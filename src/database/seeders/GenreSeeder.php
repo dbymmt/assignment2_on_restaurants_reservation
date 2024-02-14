@@ -15,7 +15,15 @@ class GenreSeeder extends Seeder
     public function run()
     {
         //
+        $tst_genres = ['寿司', '焼き肉', '居酒屋', 'イタリアン', 'ラーメン'];
         
+        foreach($tst_genres as $tst_genre)
+        {
+            $param = [
+                'name' => $tst_genre,
+            ];
+            DB::table('genres')->insert($param);
+        };
         // $param = [
         //     'content' => '商品のお届けについて'
         // ];
