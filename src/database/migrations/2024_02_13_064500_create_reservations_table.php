@@ -22,7 +22,7 @@ class CreateReservationsTable extends Migration
             $table->integer('contact')->unsigned();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->softDeletes();
+            $table->softDeletes()->nullable();
         });
     }
 
