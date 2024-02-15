@@ -16,13 +16,16 @@ class FavoriteFactory extends Factory
      */
     public function definition()
     {
-        $users = User::all();
-        $restaurants = Restaurant::all();
-
+        $user_ids = User::all()->pluck('id');
+        $restaurant_ids = Restaurant::all()->pluck('id');
+        $matrix = $user_ids->crossJoin($restaurant_ids);
+        $pairs = $this->faker->unique()->randomElement($matrix);
         return [
             //
-            'user_id' => $users->random()->id,
-            'restaurant_id' => $restaurants->random()->id,
+            'user_id' => $pairs[0],
+            'restaurant_id' => $pairs[1],
+            // 'user_id' => $users->random()->id,
+            // 'restaurant_id' => $restaurants->random()->id,
         ];
     }
 }
