@@ -3,14 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\Restaurant;
 
 class FavoriteFactory extends Factory
 {
-    // $users = User::all();
-    // $restaurants = Restaurant::all();
-    // 'user_id' => $users->random()->id;
-    // 'restaurant_id => $restaurants->random()->id,
-
+    
     /**
      * Define the model's default state.
      *
@@ -18,8 +16,13 @@ class FavoriteFactory extends Factory
      */
     public function definition()
     {
+        $users = User::all();
+        $restaurants = Restaurant::all();
+
         return [
             //
+            'user_id' => $users->random()->id,
+            'restaurant_id' => $restaurants->random()->id,
         ];
     }
 }
