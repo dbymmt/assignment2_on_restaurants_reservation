@@ -19,7 +19,6 @@ class CreateFavoritesTable extends Migration
             $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->softDeletes()->nullable();
 
             // $table->foreign('following_user_id')->references('id')->on('users');
             // $table->foreign('followed_user_id')->references('id')->on('users');

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
 
     public function user(){
         return $this->belongsTo('App\Models\User');

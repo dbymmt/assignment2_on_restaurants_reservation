@@ -22,7 +22,6 @@ class CreateReservationsTable extends Migration
             $table->string('contact');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->softDeletes()->nullable();
         });
     }
 
