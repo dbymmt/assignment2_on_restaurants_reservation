@@ -10,4 +10,12 @@ class Favorite extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function restaurant(){
+        return $this->belongsTo('App\Models\Restaurant');
+    }
 }
