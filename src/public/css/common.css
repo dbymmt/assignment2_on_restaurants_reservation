@@ -1,0 +1,9 @@
+a {
+    text-decoration: none;
+}
+
+header.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
