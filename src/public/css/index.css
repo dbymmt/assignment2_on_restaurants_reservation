@@ -1,0 +1,4 @@
+section.index-favorites {
+    display: flex;
+    flex-wrap: wrap;
+}
