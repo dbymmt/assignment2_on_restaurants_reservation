@@ -7,8 +7,10 @@
 @section('content')
 
 <?php
-    // テストデータ
+    // テストデータ(コントローラー代用)
     $restaurant = App\Models\Restaurant::first();
+    $today = \Carbon\Carbon::today();
+    $acceptDay = $today->addDay(2)->format('Y-m-d');
 ?>
 <article class="detail-main">
     <section class="detail-body">
@@ -31,7 +33,7 @@
         <h3 class="detail-reservation__title">予約</h3>
         <form action="/detail" method="post">
             <div class="detail-reservation__form-body">
-                <input type="date" name="date" id="detail-reservation__value-date">
+                <input type="date" name="date" id="detail-reservation__value-date" min="{{$acceptDay}}">
                 <select name="time" id="detail-reservation__value-time">
                     @for($i = 0; $i < 24; $i++)
                         <option value="{{$i}}:00">{{$i}}:00</option>
@@ -50,7 +52,6 @@
                 <dt>Number</dt><dd id="detail-reservation__confirm-visitors"></dd>
             </dl>
             <input type="submit" value="予約する">
-            <script src="{{ asset('js/detail.js')}}"></script>
         </form>
     </section>
 </article>

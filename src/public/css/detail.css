@@ -48,7 +48,53 @@ article.detail-main {
 
 /* 予約 */
 .detail-reservation {
-    width: 48%;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: calc(48% - 40px);
     margin-left: 2%;
     background-color: #305DFF;
+    box-shadow: 2px 2px 4px;
+    border-radius: 10px;
+}
+
+.detail-reservation__title {
+    color: #fff;
+}
+
+.detail-reservation__form-body > input, .detail-reservation__form-body > select{
+    display: block;
+}
+
+.detail-reservation__confirm {
+    width: 80%;
+    padding: 30px;
+    color: #fff;
+    background-color: #4D7FFF;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.8em;
+}
+
+.detail-reservation__confirm > dt {
+    width: 35%;
+}
+
+.detail-reservation__confirm > dd {
+    width: 45%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.detail-reservation > form > input {
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    background-color: #0538ff;
+    color: #fff;
+    border: 1px solid #0538ff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
