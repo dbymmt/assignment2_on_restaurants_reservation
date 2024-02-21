@@ -18,7 +18,8 @@ class CreateReservationsTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete();
             $table->integer('visitors')->unsigned();
-            $table->dateTime('scheduled_date');
+            $table->date('scheduled_date');
+            $table->time('scheduled_time');
             $table->string('contact');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();

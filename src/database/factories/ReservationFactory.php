@@ -19,14 +19,17 @@ class ReservationFactory extends Factory
         $phone_no_before = $this->faker->phoneNumber();
         $users = User::all();
         $restaurants = Restaurant::all();
-        // 'scheduled_date => $this->faker->dateTimeBetween('now', '+1 year)', でなんとかならんかなw 
+        $scheduled_date = $this->faker->dateTimeBetween('now', '+1 year')->format('Y-m-d');
+        $scheduled_time = $this->faker->numberBetween(0,23).':00';
+
         return [
             //
             'user_id' => $users->random()->id,
             'restaurant_id' => $restaurants->random()->id,
             'visitors' => random_int(1,10),
             'contact' => str_replace("-", "",$phone_no_before),
-            'scheduled_date' => $this->faker->dateTimeBetween('now', '+1 year'),
+            'scheduled_date' => $scheduled_date,
+            'scheduled_time' => $scheduled_time
         ];
     }
 }

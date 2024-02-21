@@ -1,9 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.auth-template')
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/register_login.css') }}">
-@endsection
+@section('title', 'Login')
 
-@section('content')
+@section('auth-content')
+<section class="register_login__body">
+    <form action="/login" method="post">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="ログイン">
+    </form>
+</section>
 
 @endsection
