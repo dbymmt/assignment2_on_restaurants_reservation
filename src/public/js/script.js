@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('unko');
 
-    // menu-open, menu-close
+    // メニューオープンクローズ
     let menu_open = document.getElementById('header__menu-open');
     let menu_close = document.getElementById('header__menu-close');
     menu_open.addEventListener('click', function () {
@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-
     // 戻るボタン
     // const back = document.getElementById('btn--back');
     // back.addEventListener('click', (e) => { history.back(); return false; });
 
 });
+
