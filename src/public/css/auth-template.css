@@ -1,0 +1,12 @@
+.auth-template-title {
+    padding: 10px 20px;
+    box-shadow: 2px 2px 4px;
+    width: calc(33% - 40px);
+    min-width: 360px;
+    margin-bottom: 0;
+    color: #fff;
+    background-color: #305DFF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 0 auto;
+}

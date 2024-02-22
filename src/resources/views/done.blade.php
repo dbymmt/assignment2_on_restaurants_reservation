@@ -7,6 +7,6 @@
 @section('content')
 <article class="thanks-done-main">
     <h4 class="thanks-done-message">ご予約ありがとうございます</h4>
-    <button value="戻る"></button>
+    <p class="thanks-done-button"><button>戻る</button></p>
 </article>
 @endsection
