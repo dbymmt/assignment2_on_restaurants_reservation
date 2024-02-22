@@ -8,11 +8,19 @@
 
 <?php
     // テストデータ
-    $restaurant = App\Models\Restaurant::first();
+    $restaurants = App\Models\Restaurant::all();
+
+    $restaurants->each(function($restaurant){
+        $favoriteId = App\Models\Favorite::where('user_id', 1)
+        ->where('restaurant_id', $restaurant->id)
+        ->value('id');
+        $restaurant->favorite_id = $favoriteId;
+    });
+
 ?>
 <section class="index-favorites">
-    @for($i = 0; $i < 10; $i++)
+    @foreach($restaurants as $restaurant)
         @include('part_summary',['restaurant' => $restaurant])
-    @endfor
+    @endforeach
 </section>
 @endsection

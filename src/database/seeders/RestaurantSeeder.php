@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Restaurant;
 
 class RestaurantSeeder extends Seeder
 {
@@ -15,8 +16,7 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         //
-        //エリアID, ジャンルID, 名前, 概要, URL
-        //ジャンルID: 寿司, 焼き肉, 居酒屋, イタリアン, ラーメン
+        //元データ
         $tst_restaurants = [
             [
                 'area_id' => 16,
@@ -34,6 +34,7 @@ class RestaurantSeeder extends Seeder
             ],
         ];
         
+        // 元データ入力
         foreach($tst_restaurants as $tst_restaurant)
         {
             $param = [
@@ -45,9 +46,10 @@ class RestaurantSeeder extends Seeder
             ];
             DB::table('restaurants')->insert($param);
         }
-        // $param = [
-        //     'content' => '商品のお届けについて'
-        // ];
-        // DB::table('categories')->insert($param);
+        
+        // ランダムデータ
+        Restaurant::factory(18)->create();
+
+
     }
 }

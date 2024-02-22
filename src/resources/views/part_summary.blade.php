@@ -9,7 +9,12 @@
         <span class="part-summary__detail-tag">#{{ $restaurant->area->name }}</span>
         <span class="part-summary__detail-tag">#{{ $restaurant->genre->name }}</span>
         <div class="part-summary__detail-detail-heart">
-            <a href="#">詳しく見る</a><i class="fa-solid fa-heart"></i>
+            <a href="#">詳しく見る</a>
+            @if($restaurant->favorite_id)
+                <i class="fa-solid fa-heart"></i>
+            @else
+                <i class="fa-regular fa-heart"></i>
+            @endif
         </div>
     </div>
 </div>
