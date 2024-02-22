@@ -66,5 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // const back = document.getElementById('detail-body__title-back');
     // back.addEventListener('click', (e) => { history.back(); return false; });
 
+    // おそらくハートマーククリックでなにかしないといけないはず・・・
+    // let targetAddRestaurant = document.querySelector('[id^="restaurant"]')
+    // let targetDelFavorite = document.querySelector('[id^="favorite"]')
+
 });
 
