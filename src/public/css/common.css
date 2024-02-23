@@ -98,7 +98,7 @@ div.part-summary__detail-detail-heart > a {
     box-shadow: 2px 2px 4px;
 }
 
-div.part-summary__detail-detail-heart > i{
+div.part-summary__detail-detail-heart > span{
     display: block;
     color: red;
 }

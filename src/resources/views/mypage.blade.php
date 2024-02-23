@@ -13,7 +13,7 @@
 
 ?>
 <h1 class="mypage-username">{{$user->name}}</h1>
-<article class="mypage-body">
+<article class="mypage-body" id="mypage">
     <section class="mypage-reservations">
         <h2 class="mypage-reservation__top">予約状況</h2>
         @foreach($reservations as $reservation)

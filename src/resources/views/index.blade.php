@@ -6,21 +6,9 @@
 
 @section('content')
 
-<?php
-    // テストデータ
-    $restaurants = App\Models\Restaurant::all();
-
-    $restaurants->each(function($restaurant){
-        $favoriteId = App\Models\Favorite::where('user_id', 1)
-        ->where('restaurant_id', $restaurant->id)
-        ->value('id');
-        $restaurant->favorite_id = $favoriteId;
-    });
-
-?>
-<section class="index-favorites">
+<article class="index-restaurants" id="index">
     @foreach($restaurants as $restaurant)
         @include('part_summary',['restaurant' => $restaurant])
     @endforeach
-</section>
+</article>
 @endsection

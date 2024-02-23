@@ -6,13 +6,7 @@
 
 @section('content')
 
-<?php
-    // テストデータ(コントローラー代用)
-    $restaurant = App\Models\Restaurant::first();
-    $today = \Carbon\Carbon::today();
-    $acceptDay = $today->addDay(2)->format('Y-m-d');
-?>
-<article class="detail-main">
+<article class="detail-main" id="detail">
     <section class="detail-body">
         <h3 class="detail-body__title"><i class="fa-solid fa-less-than" id="detail-body__title-back"></i>{{ $restaurant->name }}</h3>
         <div class="detail-body__img">
@@ -28,6 +22,7 @@
             </div>
         </div>
     </section>
+
     {{-- 予約(ログインユーザのみ) --}}
     <section class="detail-reservation">
         <h3 class="detail-reservation__title">予約</h3>

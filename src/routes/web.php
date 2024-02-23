@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,33 +15,39 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/done', function(){
-    return view('done');
-});
 
-Route::get('/thanks', function(){
-    return view('thanks');
-});
 
-Route::get('/login', function(){
-    return view('auth.login');
-});
+Route::get('/', [HomeController::class, 'index'])->name('homeIndex');
+Route::get('/search', [HomeController::class, 'search']);
+Route::get('/detail/{id}', [HomeController::class, 'detail'])->name('homeDetail');
 
-Route::get('/register', function(){
-    return view('auth.register');
-});
+// Route::get('/', function(){
+//     return view('index');
+// });
 
-Route::get('/', function(){
-    return view('index');
-});
+// Route::get('/done', function(){
+//     return view('done');
+// });
 
-Route::get('/detail', function(){
-    return view('detail');
-});
+// Route::get('/thanks', function(){
+//     return view('thanks');
+// });
 
-Route::get('/mypage', function(){
-    return view('mypage');
-});
+// Route::get('/login', function(){
+//     return view('auth.login');
+// });
+
+// Route::get('/register', function(){
+//     return view('auth.register');
+// });
+
+// Route::get('/detail', function(){
+//     return view('detail');
+// });
+
+// Route::get('/mypage', function(){
+//     return view('mypage');
+// });
 
 // Route::get('/', function () {
 //     return view('welcome');

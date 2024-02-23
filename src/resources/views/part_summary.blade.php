@@ -10,11 +10,13 @@
         <span class="part-summary__detail-tag">#{{ $restaurant->genre->name }}</span>
         <div class="part-summary__detail-detail-heart">
             <a href="/detail/{{$restaurant->id}}">詳しく見る</a>
-            @if($restaurant->favorite_id)
-                <i class="fa-solid fa-heart" id="favorite_{{$restaurant->favorite_id}}"></i>
-            @else
-                <i class="fa-regular fa-heart" id="restaurant_{{$restaurant->id}}"></i>
-            @endif
+            <span>
+                @if($restaurant->favorite_id)
+                    <i class="fa-solid fa-heart" id="favorite_{{$restaurant->favorite_id}}"></i>
+                @else
+                    <i class="fa-regular fa-heart" id="restaurant_{{$restaurant->id}}"></i>
+                @endif
+            </span>
         </div>
     </div>
 </div>
