@@ -7,9 +7,9 @@
 @section('content')
 <?php
     // テストデータ
-    $user = App\Models\User::find(2);
-    $favorites = App\Models\Favorite::where('user_id', $user->id)->get();
-    $reservations = App\Models\Reservation::where('user_id', $user->id)-> get();
+    // $user = App\Models\User::find(2);
+    // $favorites = App\Models\Favorite::where('user_id', $user->id)->get();
+    // $reservations = App\Models\Reservation::where('user_id', $user->id)-> get();
 
 ?>
 <h1 class="mypage-username">{{$user->name}}</h1>

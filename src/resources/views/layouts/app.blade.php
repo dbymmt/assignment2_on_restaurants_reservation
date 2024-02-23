@@ -2,22 +2,22 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rese</title>
-  
-  {{-- axios --}}
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
-  {{-- font awesome --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rese</title>
 
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-  <script src="{{ asset('js/script.js') }}"></script>
+    {{-- axios --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  @yield('css')
+    {{-- font awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <script src="{{ asset('js/script.js') }}"></script>
+
+    @yield('css')
 </head>
     <body>
         <header class="header">
@@ -52,8 +52,19 @@
             </h1>
             <ul class="header__menu">
                 <li class="header__list"><a href="/">Home</a></li>
-                <li class="header__list"><a href="/register">Registration</a></li>
-                <li class="header__list"><a href="/login">Login</a></li>
+                @if(Auth::check())
+                    <li class="header__list">
+                        <form action="/logout" name="logout" method="POST">
+                            @csrf
+                            {{-- <input type="submit" value="logout"> --}}
+                            <a href="javascript:logout.submit()">logout</a>
+                        </form>
+                    </li>
+                    <li class="header__list"><a href="/mypage">Mypage</a></li>
+                @else
+                    <li class="header__list"><a href="/register">Registration</a></li>
+                    <li class="header__list"><a href="/login">Login</a></li>
+                @endif
             </ul>
         </nav>
         <main>

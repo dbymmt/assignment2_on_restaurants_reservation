@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,16 @@ use App\Http\Controllers\HomeController;
 
 
 
-Route::get('/', [HomeController::class, 'index'])->name('homeIndex');
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/search', [HomeController::class, 'search']);
-Route::get('/detail/{id}', [HomeController::class, 'detail'])->name('homeDetail');
+Route::get('/detail/{id}', [HomeController::class, 'detail']);
+Route::get('/thanks', [MypageController::class, 'thanks'])->name('thanks');
 
-// Route::get('/', function(){
-//     return view('index');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', [MypageController::class, 'index']);
+});
+
+
 
 // Route::get('/done', function(){
 //     return view('done');
@@ -41,9 +45,6 @@ Route::get('/detail/{id}', [HomeController::class, 'detail'])->name('homeDetail'
 //     return view('auth.register');
 // });
 
-// Route::get('/detail', function(){
-//     return view('detail');
-// });
 
 // Route::get('/mypage', function(){
 //     return view('mypage');
