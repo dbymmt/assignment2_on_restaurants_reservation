@@ -9,6 +9,8 @@ class Genre extends Model
 {
     use HasFactory;
 
+    public $fillable =['name'];
+
     public function restaurants(){
         return $this->hasMany('App\Models\Restaurant');
     }

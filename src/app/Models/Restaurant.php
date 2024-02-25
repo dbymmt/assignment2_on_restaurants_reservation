@@ -9,6 +9,14 @@ class Restaurant extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'area_id',
+        'genre_id',
+        'name',
+        'detail',
+        'image_url',
+    ];
+
     public function reservations(){
         return $this->hasMany('App\Models\Reservation');
     }
@@ -23,5 +31,9 @@ class Restaurant extends Model
 
     public function owner(){
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function favorites(){
+        return $this->hasMany('App\Models\Favorite');
     }
 }

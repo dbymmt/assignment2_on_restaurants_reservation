@@ -25,6 +25,8 @@ Route::get('/thanks', [MypageController::class, 'thanks'])->name('thanks');
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', [MypageController::class, 'index']);
+    Route::post('/mypage/favoriteAdd/{id}', [MypageController::class, 'favoriteAdd']);
+    Route::delete('/mypage/favoriteDelete/{id}', [MypageController::class, 'favoriteDelete']);
 });
 
 
@@ -37,18 +39,7 @@ Route::middleware('auth')->group(function () {
 //     return view('thanks');
 // });
 
-// Route::get('/login', function(){
-//     return view('auth.login');
-// });
 
-// Route::get('/register', function(){
-//     return view('auth.register');
-// });
-
-
-// Route::get('/mypage', function(){
-//     return view('mypage');
-// });
 
 // Route::get('/', function () {
 //     return view('welcome');

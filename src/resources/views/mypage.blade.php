@@ -5,13 +5,7 @@
 @endsection
 
 @section('content')
-<?php
-    // テストデータ
-    // $user = App\Models\User::find(2);
-    // $favorites = App\Models\Favorite::where('user_id', $user->id)->get();
-    // $reservations = App\Models\Reservation::where('user_id', $user->id)-> get();
 
-?>
 <h1 class="mypage-username">{{$user->name}}</h1>
 <article class="mypage-body" id="mypage">
     <section class="mypage-reservations">
@@ -31,8 +25,8 @@
     <section class="mypage-favorites">
         <h2 class="mypage-favorites__main-title">お気に入り店舗</h2>
         <div class="mypage-favorites__main">
-            @foreach($favorites as $favorite)
-                @include('part_summary',['restaurant' => $favorite->restaurant])
+            @foreach($restaurants as $restaurant)
+                @include('part_summary',['restaurant' => $restaurant])
             @endforeach
         </div>
     </section>

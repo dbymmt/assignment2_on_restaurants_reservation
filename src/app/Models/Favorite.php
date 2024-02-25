@@ -11,6 +11,8 @@ class Favorite extends Model
     use HasFactory;
     // use SoftDeletes;
 
+    public $fillable =['user_id' , 'restaurant_id'];
+
     public function user(){
         return $this->belongsTo('App\Models\User');
     }

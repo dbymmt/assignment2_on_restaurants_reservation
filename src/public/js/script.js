@@ -1,3 +1,30 @@
+//////////////////
+// お気に入り外し
+//////////////////
+function favoriteIconDelete(callFunc) {
+    let favoriteIcons = document.querySelectorAll('.part-summary__detail-detail-heart .fa-solid');
+
+    favoriteIcons.forEach(function (icon) { 
+        icon.addEventListener('click', function (event) { 
+            let favoriteId = icon.getAttribute('id').replace('favorite_', '');
+            let restaurantId = icon.closest('[id*="part-summary-restaurant"]').getAttribute('id').replace('part-summary-restaurant', '');
+            const confirmDel = confirm('削除しますか');
+            if(confirmDel === true){
+                axios.delete(`/mypage/favoriteDelete/${favoriteId}`)
+                    .then(response => {
+                        if (response.data === true) {
+                            callFunc(restaurantId);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        });
+    });
+}
+
+
 
 document.addEventListener('DOMContentLoaded', function () { 
 
@@ -15,54 +42,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // detailページ
+    // detailページ //
     if(document.querySelector('[id="detail"]') != null){
 
         //////////////
         // 予約確認
         //////////////
 
-        // 予約確認対象要素
-        let confirm_restaurant = document.getElementById('detail-reservation__confirm-name');
-        let confirm_date = document.getElementById('detail-reservation__confirm-date');
-        let confirm_time = document.getElementById('detail-reservation__confirm-time');
-        let confirm_visitors = document.getElementById('detail-reservation__confirm-visitors');
+        if(document.querySelector('[class*="detail-reservation"]')){
+            // 予約確認対象要素
+            let confirm_restaurant = document.getElementById('detail-reservation__confirm-name');
+            let confirm_date = document.getElementById('detail-reservation__confirm-date');
+            let confirm_time = document.getElementById('detail-reservation__confirm-time');
+            let confirm_visitors = document.getElementById('detail-reservation__confirm-visitors');
 
-        // 店名
-        confirm_restaurant.textContent = document.getElementsByClassName('detail-body__title')[0].textContent;
+            // 店名
+            confirm_restaurant.textContent = document.getElementsByClassName('detail-body__title')[0].textContent;
 
-        // 日付
-        document.getElementById('detail-reservation__value-date').addEventListener('input', function () {
+            // 日付
+            document.getElementById('detail-reservation__value-date').addEventListener('input', function () {
 
-            // 日数制限(中何日開けるか)
-            let limitDays = 1;
-            // 入力日
-            let inputDate = new Date(this.value);
-            // 今日
-            let today = new Date();
-            // 最短予約許可
-            let leastDate = new Date();
-            leastDate.setDate(today.getDate() + limitDays);
+                // 日数制限(中何日開けるか)
+                let limitDays = 1;
+                // 入力日
+                let inputDate = new Date(this.value);
+                // 今日
+                let today = new Date();
+                // 最短予約許可
+                let leastDate = new Date();
+                leastDate.setDate(today.getDate() + limitDays);
 
-            if (inputDate < leastDate) {
-                // alert('予約は今日から' + limitDays + '以降に設定してください');
-                confirm_date.textContent = '予約は今日から'+limitDays+'以降にしてください';
-            }
-            else {
-                confirm_date.textContent = this.value;
-            }
+                if (inputDate < leastDate) {
+                    // alert('予約は今日から' + limitDays + '以降に設定してください');
+                    confirm_date.textContent = '予約は今日から'+limitDays+'以降にしてください';
+                }
+                else {
+                    confirm_date.textContent = this.value;
+                }
 
-        });
+            });
 
-        // 時間
-        document.getElementById('detail-reservation__value-time').addEventListener('input', function () { 
-            confirm_time.textContent = this.value;
-        });
+            // 時間
+            document.getElementById('detail-reservation__value-time').addEventListener('input', function () { 
+                confirm_time.textContent = this.value;
+            });
 
-        // 人数
-        document.getElementById('detail-reservation__value-visitors').addEventListener('input', function () { 
-            confirm_visitors.textContent = this.value + '人';
-        });
+            // 人数
+            document.getElementById('detail-reservation__value-visitors').addEventListener('input', function () { 
+                confirm_visitors.textContent = this.value + '人';
+            });
+
+        }
 
         //////////////
         // 戻るボタン
@@ -71,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         back.addEventListener('click', (e) => { history.back(); return false; });
     }
 
-    // indexページ
+    // indexページ //
     if(document.querySelector('[id="index"]') != null){
 
         ////////////////////////
@@ -85,18 +115,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // セレクトボックスが変更されたときの処理
         areaSelect.addEventListener('change', function () {
-            console.log('unko');
             search();
         });
 
         genreSelect.addEventListener('change', function () {
-            console.log('unkoo');
             search();
         });
 
         // テキスト入力が変更されたときの処理
         keywordInput.addEventListener('input', function () {
-            console.log('unkooo');
             search();
         });
 
@@ -138,16 +165,67 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error(error);
             });
         }
+
+        /////////////////
+        // お気に入り追加
+        /////////////////
+        toFavoriteIcons = document.querySelectorAll('.part-summary__detail-detail-heart .fa-heart');
+
+        toFavoriteIcons.forEach(function (icon) { 
+            icon.addEventListener('click', function (event) { 
+                let restaurantId = icon.dataset.restaurant;
+
+                if (icon.classList.contains('fa-regular')) {
+                    const confirmAdd = confirm('追加しますか？');
+                    if (confirmAdd === true) { 
+                        axios.post(`/mypage/favoriteAdd/${restaurantId}`)
+                        .then(response => {
+                            if (response.data.result === true) {
+                                icon.classList.remove('fa-regular');
+                                icon.classList.add('fa-solid');
+                                icon.id = `favorite_${response.data.favorite_id}`;
+                            }
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                    }
+                } else if (icon.classList.contains('fa-solid')) {
+                    let favoriteId = icon.getAttribute('id').replace('favorite_', '');
+                    const confirmDel = confirm('削除しますか');
+                    if(confirmDel === true){
+                        axios.delete(`/mypage/favoriteDelete/${favoriteId}`)
+                            .then(response => {
+                                if (response.data === true) {
+                                    icon.classList.remove('fa-solid');
+                                    icon.classList.add('fa-regular');
+                                    icon.id = '';
+                                }
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                }
+            });
+        });
     }
+
+    if (document.querySelector('[id="mypage"]') != null) {
+
+        ////////////////////
+        // お気に入り外し
+        ////////////////////
+        favoriteIconDelete(function (restaurantId) {
+            let restaurantElement = document.getElementById(`part-summary-restaurant${restaurantId}`);
+            if (restaurantElement) {
+                restaurantElement.remove();
+            }
+        });
+    }
+
+
 });
-
-
-
-
-
-    // おそらくハートマーククリックでなにかしないといけないはず・・・
-    // let targetAddRestaurant = document.querySelector('[id^="restaurant"]')
-    // let targetDelFavorite = document.querySelector('[id^="favorite"]')
 
 
 

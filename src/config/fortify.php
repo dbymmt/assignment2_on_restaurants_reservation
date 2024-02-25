@@ -158,9 +158,9 @@ return [
     ],
 
 
-    // リダイレクト用
+    //リダイレクト用
     // 'redirects' => [
-    //     'register' => route('thanks'),
+    //     'register' => '/thanks',
     // ],
 
 

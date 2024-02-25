@@ -24,6 +24,7 @@
     </section>
 
     {{-- 予約(ログインユーザのみ) --}}
+    @if(Auth::check())
     <section class="detail-reservation">
         <h3 class="detail-reservation__title">予約</h3>
         <form action="/detail" method="post">
@@ -49,6 +50,7 @@
             <input type="submit" value="予約する">
         </form>
     </section>
+    @endif
 </article>
 
 

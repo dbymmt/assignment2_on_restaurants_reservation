@@ -1,4 +1,4 @@
-<div class="part-summary">
+<div id="part-summary-restaurant{{$restaurant->id}}">
     <div class="part-summary__img">
         <img src="{{ $restaurant->image_url }}" alt="{{$restaurant->name}}">
     </div>
@@ -10,13 +10,15 @@
         <span class="part-summary__detail-tag">#{{ $restaurant->genre->name }}</span>
         <div class="part-summary__detail-detail-heart">
             <a href="/detail/{{$restaurant->id}}">詳しく見る</a>
-            <span>
-                @if($restaurant->favorite_id)
-                    <i class="fa-solid fa-heart" id="favorite_{{$restaurant->favorite_id}}"></i>
-                @else
-                    <i class="fa-regular fa-heart" id="restaurant_{{$restaurant->id}}"></i>
-                @endif
-            </span>
+            @if(Auth::check())
+                <span id="part-summary__detail-detail-restaurant{{$restaurant->id}}-heart">
+                    @if($restaurant->favorite_id)
+                        <i class="fa-solid fa-heart" id="favorite_{{$restaurant->favorite_id}}" data-restaurant="{{$restaurant->id}}"></i>
+                    @else
+                        <i class="fa-regular fa-heart" data-restaurant="{{$restaurant->id}}"></i>
+                    @endif
+                </span>
+            @endif
         </div>
     </div>
 </div>

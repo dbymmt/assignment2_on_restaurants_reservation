@@ -19,14 +19,16 @@ class HomeController extends Controller
         $areas = Area::all();
         $restaurants = Restaurant::all();
 
-        // if(Auth::id()){
-        //     $restaurants->each(function ($restaurant) {
-        //         $favoriteId = Favorite::where('user_id', Auth::id())
-        //         ->where('restaurant_id', $restaurant->id)
-        //         ->value('id');
-        //         $restaurant->favorites_id = $favoriteId;
-        //     });
-        // }
+        // ログイン時はお気に入り情報を付加する
+        if(\Auth::id()){
+            $restaurants->each(function ($restaurant) {
+                $favoriteId = Favorite::where('user_id', \Auth::id())
+                ->where('restaurant_id', $restaurant->id)
+                ->value('id');
+                $restaurant->favorite_id = $favoriteId;
+            });
+        }
+
 
         return view('index', compact('genres', 'areas', 'restaurants'));
     }
