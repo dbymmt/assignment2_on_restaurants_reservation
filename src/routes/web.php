@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [MypageController::class, 'index']);
     Route::post('/mypage/favoriteAdd/{id}', [MypageController::class, 'favoriteAdd']);
     Route::delete('/mypage/favoriteDelete/{id}', [MypageController::class, 'favoriteDelete']);
+    Route::post('/detail/reservationAdd', [MypageController::class, 'reservationAdd']);
+    Route::post('/mypage/reservationEdit', [MypageController::class, 'reservationEdit']);
+    Route::delete('/mypage/reservationDel', [MypageController::class, 'reservationDel']);
 });
 
 

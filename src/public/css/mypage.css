@@ -43,7 +43,7 @@ div[id*="mypage-reservation__main"]{
 }
 
 dl[class*="mypage-reservation__detail"] {
-    width: 80%;
+    width: 90%;
     color: #fff;
     background-color: #4D7FFF;
     display: flex;
@@ -59,13 +59,16 @@ dl[class*="mypage-reservation__detail"]>dt {
 }
 
 dl[class*="mypage-reservation__detail"]>dd {
-    width: 45%;
+    width: 55%;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 0;
     margin-right: 0;
 }
 
+dl[class*="mypage-reservation__detail"]>dd>input{
+    width: 100%;
+}
 
 
 /* お気に入り */

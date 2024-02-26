@@ -15,6 +15,7 @@ class MypageController extends Controller
         return view('thanks');
     }
 
+    // index
     public function index(){
         $user = \Auth::user();
 
@@ -35,6 +36,7 @@ class MypageController extends Controller
         return view('mypage', compact('user', 'reservations', 'restaurants'));
     }
 
+    // お気に入り削除
     public function favoriteDelete($favorite_id){
         try{
 
@@ -45,14 +47,13 @@ class MypageController extends Controller
             ->delete();
 
             return response()->json(true);
-            // return 'true';
 
         } catch(\Exception $e) {
             return response()->json(false);
-            // return 'false';
         }
     }
 
+    // お気に入り追加
     public function favoriteAdd($restaurant_id){
         $user_id = \Auth::id();
 
@@ -69,5 +70,38 @@ class MypageController extends Controller
         ];
 
         return response()->json($ret);
+    }
+
+    // 予約追加
+    public function reservationAdd(Request $request){
+        $input = $request->all();
+        $input['user_id'] = \Auth::id();
+        unset($input['_token']);
+        unset($input['submitBtn']);
+
+        Reservation::create($input);
+
+        return redirect('/mypage');
+    }
+
+    // 予約変更
+    public function reservationEdit(Request $request){
+        $input = $request->all();
+        $input['user_id'] = \Auth::id();
+        $updated = Reservation::find($input['id'])->update($input);
+
+        $ret = [
+            'result' => true,
+            'updated' => $updated,
+        ];
+
+        return response()->json($ret);
+    }
+
+    // 予約削除
+    public function reservationDel(Request $request){
+        Reservation::find($request->id)->delete();
+
+        return response()->json(true);
     }
 }

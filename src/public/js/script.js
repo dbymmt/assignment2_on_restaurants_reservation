@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let confirm_date = document.getElementById('detail-reservation__confirm-date');
             let confirm_time = document.getElementById('detail-reservation__confirm-time');
             let confirm_visitors = document.getElementById('detail-reservation__confirm-visitors');
+            let confirm_contact = document.getElementById('detail-reservation__confirm-contact');
+            let confirm_restaurant_id = confirm_restaurant.dataset.id;
+
+            // フォーム
+            let formReserve = document.querySelector('form[action*="/detail/reservationAdd"]');
+            let formBtn = formReserve.querySelector('input[name*="submitBtn"]');
 
             // 店名
             confirm_restaurant.textContent = document.getElementsByClassName('detail-body__title')[0].textContent;
@@ -89,6 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
             // 人数
             document.getElementById('detail-reservation__value-visitors').addEventListener('input', function () { 
                 confirm_visitors.textContent = this.value + '人';
+            });
+
+            // 連絡先
+            document.getElementById('detail-reservation__value-contact').addEventListener('input', function () { 
+                confirm_contact.textContent = this.value;
+            });
+
+            // form送信
+            formBtn.addEventListener('click', function () { 
+                let cfmSubmit = confirm('以下で送信しますか\n' + '\n日付:' + confirm_date.textContent + '\n時間:' + confirm_time.textContent + '\n人数:' + confirm_visitors.textContent + '\n連絡先:' + confirm_contact.textContent);
+
+                if (cfmSubmit === true) formReserve.submit();
             });
 
         }
@@ -252,31 +270,52 @@ document.addEventListener('DOMContentLoaded', function () {
                 inputs[0].setAttribute('min', newday_format);
 
                 // 送信ボタンのクリックイベントを追加
-                submitButton.addEventListener('click', function (event) {
+                // submitButton.addEventListener('click', function (event) {
+                submitButton.onclick = function (event) {
                     event.stopPropagation(); // 親要素へのイベント伝播を停止
-                    let date = detail.querySelector('input[name*="date"]').value;
-                    let time = detail.querySelector('select[name*="time"]').value;
+                    let reservationId = detail.querySelector('input[name*="reservation_id"]').value;
+                    let restaurantId = detail.querySelector('.mypage-reservation__detail-name').dataset.restaurantId;
+                    let date = detail.querySelector('input[name*="scheduled_date"]').value;
+                    let time = detail.querySelector('select[name*="scheduled_time"]').value;
                     let visitors = detail.querySelector('select[name*="visitors"]').value;
-                    console.log(date,time,visitors);
+                    let contact = detail.querySelector('input[name="contact"]').value;
+
+                    // console.log(reservationId, restaurantId, date, time, visitors, contact);
 
                     // 送信処理を追加
-
-                });
-
-
+                    cfmEdit = confirm('変更しますか\n\n日付:' + date + '\n時間:' + time + '\n人数:' + visitors + '\n連絡先:' + contact);
+                    if(cfmEdit === true){
+                        axios.post(`/mypage/reservationEdit?id=${reservationId}&restaurant_id=${restaurantId}&scheduled_date=${date}&scheduled_time=${time}&visitors=${visitors}&contact=${contact}`)
+                            .then(response => {
+                                if(response.data.result === true){
+                                    alert('変更しました');
+                                    // 無効化処理
+                                    elementDisable();
+                                }
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                }
             });
 
             // 外側をクリックされたら無効化
             document.addEventListener('click', function (event) { 
                 if(!event.target.closest('.mypage-reservation__detail')){
-                    let inputs = detail.querySelectorAll('input, select');
-                    let submitButton = detail.querySelector('button');
-                    inputs.forEach(function (input) {
-                        input.setAttribute('disabled', 'disabled');
-                    });
-                    submitButton.setAttribute('disabled', 'true');
+                    elementDisable();
                 }
             });
+
+            // 無効化用
+            function elementDisable() {
+                let inputs = detail.querySelectorAll('input, select');
+                let submitButton = detail.querySelector('button');
+                inputs.forEach(function (input) {
+                    input.setAttribute('disabled', 'disabled');
+                });
+                submitButton.setAttribute('disabled', 'true');
+            }
         });
 
         /////////////
@@ -286,10 +325,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         deleteIcons.forEach(function (deleteIcon) { 
             deleteIcon.addEventListener('click', function () {
+                console.log(deleteIcon.parentNode.parentNode);
                 let cmDelete = confirm('削除しますか');
                 if(cmDelete === true){
-                    console.log(deleteIcon.dataset.reservation_id);
                     // 削除処理
+                    axios.delete(`/mypage/reservationDel?id=${deleteIcon.dataset.reservation_id}`)
+                        .then(response => {
+                            if (response.data === true) {
+                                alert('削除しました');
+                                deleteIcon.parentNode.parentNode.remove();
+                            }
+                        })
+                        .catch(error => { 
+                            console.error(error);
+                        });
                 }
             });
         });

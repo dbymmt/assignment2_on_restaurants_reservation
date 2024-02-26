@@ -14,14 +14,15 @@
         <div id="mypage-reservation__main{{$loop->iteration}}">
             <h4 class="mypage-reservation__title"><i class="fa-regular fa-clock"></i>予約{{$loop->iteration}}<i class="fa-regular fa-circle-xmark" data-reservation_id = "{{$reservation->id}}"></i></h4>
             <dl class="mypage-reservation__detail">
-                <dt>Shop</dt><dd class="mypage-reservation__detail-name" data-name="{{$reservation->restaurant->name}}" >{{$reservation->restaurant->name}}</dd>
+                <input type="hidden" name="reservation_id" value="{{$reservation->id}}">
+                <dt>Shop</dt><dd class="mypage-reservation__detail-name" data-restaurant-id="{{$reservation->restaurant_id}}" >{{$reservation->restaurant->name}}</dd>
                 <dt>Date</dt>
                 <dd class="mypage-reservation__detail-date" data-date="{{$reservation->scheduled_date}}">
-                    <input type="date" name="date" data-limit="2" value="{{$reservation->scheduled_date}}" disabled>
+                    <input type="date" name="scheduled_date" data-limit="2" value="{{$reservation->scheduled_date}}" disabled>
                 </dd>
                 <dt>Time</dt>
                 <dd class="mypage-reservation__detail-time" >
-                    <select name="time" id="mypage-reservation__time{{$loop->iteration}}" data-time="{{$reservation->scheduled_time}}" disabled>
+                    <select name="scheduled_time" id="mypage-reservation__time{{$loop->iteration}}" data-time="{{$reservation->scheduled_time}}" disabled>
                         @for($i=0; $i<24; $i++)
                         <option value="{{$i.':00'}}" {{ ($i.':00:00') == $reservation->scheduled_time ? "selected" : ""}}>{{$i}}:00</option>
                         @endfor
@@ -35,6 +36,8 @@
                         @endfor
                     </select>
                 </dd>
+                <dt>Contact</dt>
+                <dd class="mypage-reservation__detail-tel"><input type="text" name="contact" data-tel="{{$reservation->contact}}" value="{{$reservation->contact}}" disabled></dd>
                 <button disabled="true">送信</button>
             </dl>
         </div>
