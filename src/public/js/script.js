@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
     // detailページ //
     if(document.querySelector('[id="detail"]') != null){
 
@@ -222,9 +221,80 @@ document.addEventListener('DOMContentLoaded', function () {
                 restaurantElement.remove();
             }
         });
+
+
+        /////////////
+        // 予約変更
+        /////////////
+        let reservationDetails = document.querySelectorAll('.mypage-reservation__detail');
+
+        reservationDetails.forEach(function (detail, index) {
+            detail.addEventListener('click', function (event) {
+                let inputs = detail.querySelectorAll('input, select');
+                let submitButton = detail.querySelector('button');
+
+                // 入力可能にする
+                inputs.forEach(function (input) {
+                    input.removeAttribute('disabled');
+                });
+                submitButton.removeAttribute('disabled');
+
+                // 予約余裕日の取得
+                let dateObj = new Date();
+                let today = dateObj.getTime();
+                let limitDate = inputs[0].dataset.limit;
+                let msec = limitDate * (24 * 60 * 60 * 1000);
+                let newday = new Date(today + msec);
+                let format = 'YYYY-mm-dd';
+                let newday_format = format.replace('YYYY', newday.getFullYear());
+                newday_format = newday_format.replace('mm', ("0" + (newday.getMonth() + 1)).slice(-2));
+                newday_format = newday_format.replace('dd', ("0" + newday.getDate()).slice(-2));
+                inputs[0].setAttribute('min', newday_format);
+
+                // 送信ボタンのクリックイベントを追加
+                submitButton.addEventListener('click', function (event) {
+                    event.stopPropagation(); // 親要素へのイベント伝播を停止
+                    let date = detail.querySelector('input[name*="date"]').value;
+                    let time = detail.querySelector('select[name*="time"]').value;
+                    let visitors = detail.querySelector('select[name*="visitors"]').value;
+                    console.log(date,time,visitors);
+
+                    // 送信処理を追加
+
+                });
+
+
+            });
+
+            // 外側をクリックされたら無効化
+            document.addEventListener('click', function (event) { 
+                if(!event.target.closest('.mypage-reservation__detail')){
+                    let inputs = detail.querySelectorAll('input, select');
+                    let submitButton = detail.querySelector('button');
+                    inputs.forEach(function (input) {
+                        input.setAttribute('disabled', 'disabled');
+                    });
+                    submitButton.setAttribute('disabled', 'true');
+                }
+            });
+        });
+
+        /////////////
+        // 予約削除
+        /////////////
+        let deleteIcons = document.querySelectorAll('.fa-circle-xmark');
+
+        deleteIcons.forEach(function (deleteIcon) { 
+            deleteIcon.addEventListener('click', function () {
+                let cmDelete = confirm('削除しますか');
+                if(cmDelete === true){
+                    console.log(deleteIcon.dataset.reservation_id);
+                    // 削除処理
+                }
+            });
+        });
+
     }
-
-
 });
 
 

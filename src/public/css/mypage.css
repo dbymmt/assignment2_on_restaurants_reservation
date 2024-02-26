@@ -14,12 +14,16 @@ article.mypage-body {
     width: 45%;
 }
 
-div[class*="mypage-reservation__main"]{
+div[id*="mypage-reservation__main"]{
     width: 80%;
     padding-top: 10px;
-    background-color: #4D7FFF;
+    background-color: #305DFF;
     border-radius: 10px;
     box-shadow: 2px 2px 4px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 5px;
 }
 
 .mypage-reservation__title {
@@ -28,7 +32,7 @@ div[class*="mypage-reservation__main"]{
     padding-right: 30px;
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 0.8em;
+    font-size: 1.2em;
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -38,11 +42,8 @@ div[class*="mypage-reservation__main"]{
     display: block;
 }
 
-.mypage-reservation__detail {
+dl[class*="mypage-reservation__detail"] {
     width: 80%;
-    padding-bottom: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
     color: #fff;
     background-color: #4D7FFF;
     display: flex;
@@ -51,13 +52,13 @@ div[class*="mypage-reservation__main"]{
     margin-top: 0;
 }
 
-.mypage-reservation__detail>dt {
+dl[class*="mypage-reservation__detail"]>dt {
     width: 35%;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.mypage-reservation__detail>dd {
+dl[class*="mypage-reservation__detail"]>dd {
     width: 45%;
     margin-top: 5px;
     margin-bottom: 5px;

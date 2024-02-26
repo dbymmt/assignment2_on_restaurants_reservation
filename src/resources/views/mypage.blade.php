@@ -11,13 +11,31 @@
     <section class="mypage-reservations">
         <h2 class="mypage-reservation__top">予約状況</h2>
         @foreach($reservations as $reservation)
-        <div class="mypage-reservation__main{{$loop->iteration}}">
-            <h4 class="mypage-reservation__title"><i class="fa-regular fa-clock"></i>予約{{$loop->iteration}}<i class="fa-regular fa-circle-xmark"></i></h4>
+        <div id="mypage-reservation__main{{$loop->iteration}}">
+            <h4 class="mypage-reservation__title"><i class="fa-regular fa-clock"></i>予約{{$loop->iteration}}<i class="fa-regular fa-circle-xmark" data-reservation_id = "{{$reservation->id}}"></i></h4>
             <dl class="mypage-reservation__detail">
-                <dt>Shop</dt><dd id="mypage-reservation__detail-name">{{$reservation->restaurant->name}}</dd>
-                <dt>Date</dt><dd id="mypage-reservation__detail-date">{{$reservation->scheduled_date}}</dd>
-                <dt>Time</dt><dd id="mypage-reservation__detail-time">{{$reservation->scheduled_time}}</dd>
-                <dt>Number</dt><dd id="mypage-reservation__detail-visitors">{{$reservation->visitors}}</dd>
+                <dt>Shop</dt><dd class="mypage-reservation__detail-name" data-name="{{$reservation->restaurant->name}}" >{{$reservation->restaurant->name}}</dd>
+                <dt>Date</dt>
+                <dd class="mypage-reservation__detail-date" data-date="{{$reservation->scheduled_date}}">
+                    <input type="date" name="date" data-limit="2" value="{{$reservation->scheduled_date}}" disabled>
+                </dd>
+                <dt>Time</dt>
+                <dd class="mypage-reservation__detail-time" >
+                    <select name="time" id="mypage-reservation__time{{$loop->iteration}}" data-time="{{$reservation->scheduled_time}}" disabled>
+                        @for($i=0; $i<24; $i++)
+                        <option value="{{$i.':00'}}" {{ ($i.':00:00') == $reservation->scheduled_time ? "selected" : ""}}>{{$i}}:00</option>
+                        @endfor
+                    </select>
+                </dd>
+                <dt>Number</dt>
+                <dd class="mypage-reservation__detail-visitors" >
+                    <select name="visitors" id="mypage-reservation__visitors{{$loop->iteration}}" data-visitors="{{$reservation->visitors}}" disabled>
+                        @for($i=1; $i<9; $i++)
+                        <option value="{{$i}}" {{$i == $reservation->visitors ? "selected"  : ""}}>{{$i}}人</option>
+                        @endfor
+                    </select>
+                </dd>
+                <button disabled="true">送信</button>
             </dl>
         </div>
         @endforeach
