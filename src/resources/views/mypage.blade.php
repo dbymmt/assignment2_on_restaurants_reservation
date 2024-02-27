@@ -24,7 +24,7 @@
                 <dd class="mypage-reservation__detail-time" >
                     <select name="scheduled_time" id="mypage-reservation__time{{$loop->iteration}}" data-time="{{$reservation->scheduled_time}}" disabled>
                         @for($i=0; $i<24; $i++)
-                        <option value="{{$i.':00'}}" {{ ($i.':00:00') == $reservation->scheduled_time ? "selected" : ""}}>{{$i}}:00</option>
+                        <option value="{{$i.':00'}}" {{ (( $i < 10 ? $i = '0'.$i : $i).':00:00') == $reservation->scheduled_time ? "selected" : ""}}>{{$i}}:00</option>
                         @endfor
                     </select>
                 </dd>

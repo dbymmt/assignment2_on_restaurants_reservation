@@ -81,7 +81,7 @@ class MypageController extends Controller
 
         Reservation::create($input);
 
-        return redirect('/mypage');
+        return view('/done');
     }
 
     // 予約変更

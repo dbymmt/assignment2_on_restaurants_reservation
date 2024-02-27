@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<article class="thanks-done-main">
+<article class="thanks-done-main" id="done-main">
     <h4 class="thanks-done-message">ご予約ありがとうございます</h4>
     <p class="thanks-done-button"><button>戻る</button></p>
 </article>

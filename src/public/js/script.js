@@ -24,7 +24,13 @@ function favoriteIconDelete(callFunc) {
     });
 }
 
-
+//////////////
+// 戻るボタン
+//////////////
+function backButton(back){
+    // const back = document.getElementById('detail-body__title-back');
+    back.addEventListener('click', (e) => { history.back(); return false; });
+}
 
 document.addEventListener('DOMContentLoaded', function () { 
 
@@ -114,8 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
         //////////////
         // 戻るボタン
         //////////////
-        const back = document.getElementById('detail-body__title-back');
-        back.addEventListener('click', (e) => { history.back(); return false; });
+        backButton(document.getElementById('detail-body__title-back'));
+        // const back = document.getElementById('detail-body__title-back');
+        // back.addEventListener('click', (e) => { history.back(); return false; });
     }
 
     // indexページ //
@@ -228,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // mypage
     if (document.querySelector('[id="mypage"]') != null) {
 
         ////////////////////
@@ -280,8 +288,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     let visitors = detail.querySelector('select[name*="visitors"]').value;
                     let contact = detail.querySelector('input[name="contact"]').value;
 
-                    // console.log(reservationId, restaurantId, date, time, visitors, contact);
-
                     // 送信処理を追加
                     cfmEdit = confirm('変更しますか\n\n日付:' + date + '\n時間:' + time + '\n人数:' + visitors + '\n連絡先:' + contact);
                     if(cfmEdit === true){
@@ -290,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 if(response.data.result === true){
                                     alert('変更しました');
                                     // 無効化処理
-                                    elementDisable();
+                                    elementDisable(detail);
                                 }
                             })
                             .catch(error => {
@@ -298,24 +304,30 @@ document.addEventListener('DOMContentLoaded', function () {
                             });
                     }
                 }
-            });
 
-            // 外側をクリックされたら無効化
-            document.addEventListener('click', function (event) { 
-                if(!event.target.closest('.mypage-reservation__detail')){
-                    elementDisable();
+                // 他の項目は無効
+                reservationDetails.forEach(function (otherDetail, otherIndex) {
+                    if (otherIndex !== index) elementDisable(otherDetail);
+                });
+
+                // 外側をクリックされたら無効化
+                document.addEventListener('click', function (event) { 
+                    if(!event.target.closest('.mypage-reservation__detail')){
+                    // if(event.target != this){
+                        elementDisable(detail);
+                    }
+                });
+
+                // 無効化用
+                function elementDisable(detail) {
+                    let inputs = detail.querySelectorAll('input, select');
+                    let submitButton = detail.querySelector('button');
+                    inputs.forEach(function (input) {
+                        input.setAttribute('disabled', 'disabled');
+                    });
+                    submitButton.setAttribute('disabled', 'true');
                 }
             });
-
-            // 無効化用
-            function elementDisable() {
-                let inputs = detail.querySelectorAll('input, select');
-                let submitButton = detail.querySelector('button');
-                inputs.forEach(function (input) {
-                    input.setAttribute('disabled', 'disabled');
-                });
-                submitButton.setAttribute('disabled', 'true');
-            }
         });
 
         /////////////
@@ -342,7 +354,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
+    }
 
+    // 予約終了ページ
+    if (document.getElementById('done-main') != null) {
+        //////////////
+        // 戻るボタン
+        //////////////
+        backButton(document.querySelector('button'));
     }
 });
 
