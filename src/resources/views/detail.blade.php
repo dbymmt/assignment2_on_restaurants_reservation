@@ -53,15 +53,15 @@
                     </select>
                 </dd>
                 {{-- 連絡先 --}}
-                <dt>Contact</dt>
-                <dd><input type="text" name="contact" id="detail-reservation__value-contact"></dd>
+                {{-- <dt>Contact</dt>
+                <dd><input type="text" name="contact" id="detail-reservation__value-contact"></dd> --}}
             </dl>
             <dl class="detail-reservation__confirm">
                 <dt>Shop</dt><dd id="detail-reservation__confirm-name" data-id="{{$restaurant->id}}"></dd>
                 <dt>Date</dt><dd id="detail-reservation__confirm-date"></dd>
                 <dt>Time</dt><dd id="detail-reservation__confirm-time"></dd>
                 <dt>Number</dt><dd id="detail-reservation__confirm-visitors"></dd>
-                <dt>Contact</dt><dd id="detail-reservation__confirm-contact"></dd>
+                {{-- <dt>Contact</dt><dd id="detail-reservation__confirm-contact"></dd> --}}
             </dl>
             <input type="submit" name="submitBtn" value="予約する">
         </form>

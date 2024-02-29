@@ -36,8 +36,8 @@
                         @endfor
                     </select>
                 </dd>
-                <dt>Contact</dt>
-                <dd class="mypage-reservation__detail-tel"><input type="text" name="contact" data-tel="{{$reservation->contact}}" value="{{$reservation->contact}}" disabled></dd>
+                {{-- <dt>Contact</dt>
+                <dd class="mypage-reservation__detail-tel"><input type="text" name="contact" data-tel="{{$reservation->contact}}" value="{{$reservation->contact}}" disabled></dd> --}}
                 <button disabled="true">送信</button>
             </dl>
         </div>

@@ -133,6 +133,15 @@ return [
 
     'views' => true,
 
+
+    // 'redirects' => [
+    //     'login' => '/',
+    //     'logout' => '/',
+    //     'password-confirmation' => null,
+    //     'register' => '/thanks',
+    //     'email-verification' => null,
+    // ],
+
     /*
     |--------------------------------------------------------------------------
     | Features
@@ -156,12 +165,5 @@ return [
             // 'window' => 0,
         ]),
     ],
-
-
-    //リダイレクト用
-    // 'redirects' => [
-    //     'register' => '/thanks',
-    // ],
-
 
 ];

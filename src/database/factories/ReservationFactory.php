@@ -27,7 +27,7 @@ class ReservationFactory extends Factory
             'user_id' => $users->random()->id,
             'restaurant_id' => $restaurants->random()->id,
             'visitors' => random_int(1,10),
-            'contact' => str_replace("-", "",$phone_no_before),
+            // 'contact' => str_replace("-", "",$phone_no_before),
             'scheduled_date' => $scheduled_date,
             'scheduled_time' => $scheduled_time
         ];

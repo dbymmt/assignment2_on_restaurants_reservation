@@ -35,3 +35,9 @@ section.register_login__body {
     color: #fff;
     border-radius: 5px;
 }
+
+/* エラー表示 */
+ul[class^="register_login__errors-"] > li {
+    color: red;
+    list-style: none;
+}

@@ -32,6 +32,10 @@ function backButton(back){
     back.addEventListener('click', (e) => { history.back(); return false; });
 }
 
+
+//////////
+// 本体
+//////////
 document.addEventListener('DOMContentLoaded', function () { 
 
     ///////////////////////////
@@ -104,13 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // 連絡先
-            document.getElementById('detail-reservation__value-contact').addEventListener('input', function () { 
-                confirm_contact.textContent = this.value;
-            });
+            // document.getElementById('detail-reservation__value-contact').addEventListener('input', function () { 
+            //     confirm_contact.textContent = this.value;
+            // });
 
             // form送信
             formBtn.addEventListener('click', function () { 
-                let cfmSubmit = confirm('以下で送信しますか\n' + '\n日付:' + confirm_date.textContent + '\n時間:' + confirm_time.textContent + '\n人数:' + confirm_visitors.textContent + '\n連絡先:' + confirm_contact.textContent);
+                let cfmSubmit = confirm('以下で送信しますか\n' + '\n日付:' + confirm_date.textContent + '\n時間:' + confirm_time.textContent + '\n人数:' + confirm_visitors.textContent);
 
                 if (cfmSubmit === true) formReserve.submit();
             });
@@ -121,8 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // 戻るボタン
         //////////////
         backButton(document.getElementById('detail-body__title-back'));
-        // const back = document.getElementById('detail-body__title-back');
-        // back.addEventListener('click', (e) => { history.back(); return false; });
     }
 
     // indexページ //
@@ -286,12 +288,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     let date = detail.querySelector('input[name*="scheduled_date"]').value;
                     let time = detail.querySelector('select[name*="scheduled_time"]').value;
                     let visitors = detail.querySelector('select[name*="visitors"]').value;
-                    let contact = detail.querySelector('input[name="contact"]').value;
+                    // let contact = detail.querySelector('input[name="contact"]').value;
 
                     // 送信処理を追加
-                    cfmEdit = confirm('変更しますか\n\n日付:' + date + '\n時間:' + time + '\n人数:' + visitors + '\n連絡先:' + contact);
+                    cfmEdit = confirm('変更しますか\n\n日付:' + date + '\n時間:' + time + '\n人数:' + visitors);
                     if(cfmEdit === true){
-                        axios.post(`/mypage/reservationEdit?id=${reservationId}&restaurant_id=${restaurantId}&scheduled_date=${date}&scheduled_time=${time}&visitors=${visitors}&contact=${contact}`)
+                        axios.post(`/mypage/reservationEdit?id=${reservationId}&restaurant_id=${restaurantId}&scheduled_date=${date}&scheduled_time=${time}&visitors=${visitors}`)
                             .then(response => {
                                 if(response.data.result === true){
                                     alert('変更しました');
