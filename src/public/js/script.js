@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // フォーム
             let formReserve = document.querySelector('form[action*="/detail/reservationAdd"]');
             let formBtn = formReserve.querySelector('input[name*="submitBtn"]');
+            formBtn.disabled = true;
+            formBtn.value = "予約できません";
 
             // 店名
             confirm_restaurant.textContent = document.getElementsByClassName('detail-body__title')[0].textContent;
@@ -89,10 +91,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (inputDate < leastDate) {
                     // alert('予約は今日から' + limitDays + '以降に設定してください');
-                    confirm_date.textContent = '予約は今日から'+limitDays+'以降にしてください';
+                    confirm_date.textContent = '予約は今日から中' + limitDays + '日空けて以降にしてください';
+                    formBtn.disabled = true;
+                    formBtn.value = "予約できません";
                 }
                 else {
                     confirm_date.textContent = this.value;
+                    formBtn.disabled = false;
+                    formBtn.value = "予約します";
                 }
 
             });
@@ -135,9 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ////////////////////////
 
         // セレクトボックスとテキスト入力の要素を取得
-        const areaSelect = document.querySelector('select[name="area"]');
-        const genreSelect = document.querySelector('select[name="genre"]');
-        const keywordInput = document.querySelector('input[name="keyword"]');
+        let areaSelect = document.querySelector('select[name="area"]');
+        let genreSelect = document.querySelector('select[name="genre"]');
+        let keywordInput = document.querySelector('input[name="keyword"]');
 
         // セレクトボックスが変更されたときの処理
         areaSelect.addEventListener('change', function () {
@@ -149,25 +155,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // テキスト入力が変更されたときの処理
-        keywordInput.addEventListener('input', function () {
-            search();
+        keywordInput.addEventListener('keydown', function (event) {
+            if(event.key === 'Enter')search();
         });
 
         // 検索を実行する関数
         function search() {
-            const area = areaSelect.value;
-            const genre = genreSelect.value;
-            const keyword = keywordInput.value;
+            let area = areaSelect.value;
+            let genre = genreSelect.value;
+            let keyword = keywordInput.value;
 
             axios.get(`/search?area=${area}&genre=${genre}&keyword=${keyword}`)
             .then(response => {
                 const restaurants = response.data;
-                const indexRestaurants = document.querySelector('.index-restaurants');
+                let indexRestaurants = document.querySelector('.index-restaurants');
                 indexRestaurants.innerHTML = '';
 
                 restaurants.forEach(restaurant => {
                     const partSummary = `
-                        <div class="part-summary">
+                        <div id="part-summary-restaurant${restaurant.id}">
                             <div class="part-summary__img">
                                 <img src="${restaurant.image_url}" alt="${restaurant.restaurant_name}">
                             </div>
@@ -339,11 +345,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         deleteIcons.forEach(function (deleteIcon) { 
             deleteIcon.addEventListener('click', function () {
-                console.log(deleteIcon.parentNode.parentNode);
                 let cmDelete = confirm('削除しますか');
                 if(cmDelete === true){
                     // 削除処理
-                    axios.delete(`/mypage/reservationDel?id=${deleteIcon.dataset.reservation_id}`)
+                    axios.delete(`/mypage/reservationDelete?id=${deleteIcon.dataset.reservation_id}`)
                         .then(response => {
                             if (response.data === true) {
                                 alert('削除しました');

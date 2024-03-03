@@ -44,7 +44,7 @@
                     </select>
                 </dd>
                 {{-- 人数 --}}
-                <dt>Visitors</dt>
+                <dt>Number</dt>
                 <dd>
                     <select name="visitors" id="detail-reservation__value-visitors">
                         @for($i = 1; $i < 10; $i++)

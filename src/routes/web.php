@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/mypage/favoriteDelete/{id}', [MypageController::class, 'favoriteDelete']);
     Route::post('/detail/reservationAdd', [MypageController::class, 'reservationAdd']);
     Route::post('/mypage/reservationEdit', [MypageController::class, 'reservationEdit']);
-    Route::delete('/mypage/reservationDel', [MypageController::class, 'reservationDel']);
+    Route::delete('/mypage/reservationDelete', [MypageController::class, 'reservationDelete']);
 });
 
 

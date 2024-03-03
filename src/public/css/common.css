@@ -38,6 +38,7 @@ header.header{
 
 /* div-part-summary */
 div[id*="part-summary-restaurant"] {
+/* div[class*="part-summary"]{ */
     width: 240px;
     height: 260px;
     box-shadow: 2px 2px 4px;
