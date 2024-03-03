@@ -1,0 +1,43 @@
+section.register_login__body {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 4px;
+    width: calc(33% - 40px);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 auto;
+    min-width: 360px;
+}
+
+.register_login__body > form > p {
+    margin-top: 0;
+    width: 100%;
+}
+
+.register_login__body-input > input {
+    width: 90%;
+    border-top: 1px;
+    border-left: 1px;
+    border-right: 1px;
+}
+
+.register_login__body > form > p > i {
+    width: 10%;
+}
+
+.register_login__body-submit {
+    text-align: right;
+}
+
+.register_login__body-submit > input[type*='submit'] {
+    border: 1px solid #305DFF;
+    background-color: #305DFF;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* エラー表示 */
+ul[class^="register_login__errors-"] > li {
+    color: red;
+    list-style: none;
+}

@@ -1,0 +1,4 @@
+article.index-restaurants {
+    display: flex;
+    flex-wrap: wrap;
+}

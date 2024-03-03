@@ -1,0 +1,147 @@
+
+/* 全体 */
+body {
+    background-color: #EEEEEE;
+    padding: 20px 60px;
+    width: calc(100% - 120px);
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* header */
+header.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header__logo > h1 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.header__logo > h1 > i {
+    display: inline-block;
+    border: 1px solid #305DFF;
+    background-color :#305DFF;
+    color: #fff;
+    padding: 2px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 4px;
+    margin-right: 10px;
+}
+
+/* div-part-summary */
+div[id*="part-summary-restaurant"] {
+/* div[class*="part-summary"]{ */
+    width: 240px;
+    height: 260px;
+    box-shadow: 2px 2px 4px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+div.part-summary__img {
+    width: 100%;
+    height: 130px;
+}
+
+div.part-summary__img > img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
+div.part-summary__detail {
+    width: calc(100% - 40px);
+    padding-bottom: 20px;
+    height: 110px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+h3.part-summary__detail-name {
+    margin-bottom: 0;
+}
+
+span.part-summary__detail-tag {
+    margin-top: 0;
+    font-size: 0.6em;
+}
+
+div.part-summary__detail-detail-heart {
+    margin-top: 15px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.part-summary__detail-detail-heart > a {
+    display:block;
+    width: 80px;
+    border: 1px solid #305DFF;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #305DFF;
+    /* margin-right:100px; */
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 0.7em;
+    text-align:center;
+    box-shadow: 2px 2px 4px;
+}
+
+div.part-summary__detail-detail-heart > span{
+    display: block;
+    color: red;
+}
+
+/* 検索メニュー */
+.header__search-menu > select, .header__search-menu > input {
+    display: inline-block;
+    margin-right: 0;
+    margin-left: 0;
+    height: 30px;
+    box-shadow: 2px 2px 4px;
+}
+
+/* メニュー */
+nav#header__nav {
+    display: none;
+    visibility: hidden;
+}
+
+#header__nav.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    display: block;
+    visibility: visible;
+    padding: 20px 60px;
+    /* width: calc(100vw - 120px);
+    height: calc(100vh - 40px); */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#header__nav > h1 > i{
+    color: #305DFF;
+    background-color: #fff;
+}
+
+#header__nav > .header__menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,26 @@
+article.thanks-done-main {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 4px;
+    width: calc(33% - 40px);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 auto;
+    min-width: 360px;
+}
+
+.thanks-done-message {
+    text-align: center;
+}
+
+.thanks-done-button {
+    text-align: center;
+}
+
+.thanks-done-button > button {
+    border: 1px solid #305DFF;
+    background-color: #305DFF;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
