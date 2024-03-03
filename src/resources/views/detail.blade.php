@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
+@section('js')
+<script src="{{ asset('js/detail.js') }}"></script>
+@endsection
+
 @section('content')
 
 <article class="detail-main" id="detail">

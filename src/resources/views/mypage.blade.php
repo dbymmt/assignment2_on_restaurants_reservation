@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
+@section('js')
+<script src="{{ asset('js/mypage.js') }}"></script>
+@endsection
+
 @section('content')
 
 <h1 class="mypage-username">{{$user->name}}</h1>
