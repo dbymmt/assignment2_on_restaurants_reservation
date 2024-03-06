@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {

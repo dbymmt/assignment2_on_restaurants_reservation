@@ -88,15 +88,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Route::get('/done', function(){
-//     return view('done');
-// });
-
-// Route::get('/thanks', function(){
-//     return view('thanks');
-// });
-
-
 
 // Route::get('/', function () {
 //     return view('welcome');
