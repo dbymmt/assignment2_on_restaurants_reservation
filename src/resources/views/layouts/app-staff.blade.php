@@ -25,10 +25,24 @@
         <header class="header">
             <div class="header__logo">
                 <h1 id="header__menu-open">
-                    <i class="fa-solid fa-chart-simple fa-rotate-90"></i>Rese
+                    <i class="fa-solid fa-chart-simple fa-rotate-90"></i>Rese Staff Only
                 </h1>
             </div>
-            @if(request()->path() === "/")
+
+            <nav class="header-staff__menu">
+                @if(Auth::check() && Auth::guard('admin')->check() && request()->is('*admin*'))
+                <form action="{{route('admin.logout')}}" method="post">
+                    @csrf
+                    <input type="submit" value="logout">
+                </form>
+                @elseif(Auth::check() && Auth::guard('owner')->check() && request()->is('*owner*'))
+                <form action="{{route('owner.logout')}}" method="post">
+                    @csrf
+                    <input type="submit" value="logout">
+                </form>
+                @endif
+            </nav>
+            {{-- @if(request()->path() === "/")
             <div class="header__search-menu">
                 <select name="area" id="header__search-area">
                     <option value="">All Areas</option>
@@ -44,11 +58,11 @@
                 </select>
                 <input type="text" name="keyword" id="header__search-keyword" placeholder="Input restaurant name">
             </div>
-            @endif
+            @endif --}}
         </header>
 
         {{-- ホームメニュー --}}
-        <nav id="header__nav">
+        {{-- <nav id="header__nav">
             <h1 id="header__menu-close">
                 <i class="fa-solid fa-square-xmark"></i>
             </h1>
@@ -58,7 +72,6 @@
                     <li class="header__list">
                         <form action="{{route('user.logout')}}" name="logout" method="POST">
                             @csrf
-                            {{-- <input type="submit" value="logout"> --}}
                             <a href="javascript:logout.submit()">logout</a>
                         </form>
                     </li>
@@ -68,7 +81,7 @@
                     <li class="header__list"><a href="/login">Login</a></li>
                 @endif
             </ul>
-        </nav>
+        </nav> --}}
         <main>
             @yield('content')
         </main>
