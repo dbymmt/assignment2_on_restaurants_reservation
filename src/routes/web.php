@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\MypageController;
+use App\Http\Controllers\Owner\HomeController as OwnerHomeController;
 
 
 /*
@@ -61,6 +62,11 @@ Route::namespace('Owner')->prefix('owner')->name('owner.')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
+        Route::get('home', [OwnerHomeController::class, 'index'])->name('index');
+        Route::get('detail/{id}', [OwnerHomeController::class, 'detail']);
+        Route::post('home/restaurantAdd', [OwnerHomeController::class, 'restaurantAdd']);
+        Route::post('home/restaurantEdit', [OwnerHomeController::class, 'restaurantEdit']);
+        Route::delete('home/restaurantDel', [OwnerHomeController::class, 'restaurantDel']);
     });
 });
 
@@ -83,18 +89,21 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 });
 
 
-
+// ユーザー登録、ログイン
 Route::get('/login', [App\Http\Controllers\User\Auth\LoginController::class, 'showLoginForm']);
 Route::get('/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegistrationForm']);
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/search', [HomeController::class, 'search']);
-Route::get('/detail/{id}', [HomeController::class, 'detail']);
+// 検索部
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/search', [IndexController::class, 'search']);
+Route::get('/detail/{id}', [IndexController::class, 'detail']);
 
 
 Route::get('/thanks', [MypageController::class, 'thanks']);
 
+// マイページ用
 // Route::get('/mypage', [MypageController::class, 'index']);
+
 
 // Route::get('/', function () {
 //     return view('welcome');

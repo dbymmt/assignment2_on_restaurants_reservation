@@ -1,0 +1,18 @@
+.owner-index-restaurants {
+    display:flex;
+}
+
+.owner-index-restaurants-body {
+    width: 65%;
+}
+
+.owner-index-restaurants__add{
+    width: 35%;
+}
+
+.owner-index-restaurants__add-body {
+    background-color: #305DFF;
+    color: #fff;
+    padding: 30px 15px;
+    border-radius: 10px;
+}

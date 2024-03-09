@@ -11,20 +11,22 @@ use App\Models\Restaurant;
 use App\Models\Favorite;
 use App\Models\Reservation;
 
-class HomeController extends Controller
+// class HomeController extends Controller
+class IndexController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $genres = Genre::all();
         $areas = Area::all();
         $restaurants = Restaurant::all();
 
         // ログイン時はお気に入り情報を付加する
-        if(\Auth::id()){
+        if (\Auth::id()) {
             $restaurants->each(function ($restaurant) {
                 $favoriteId = Favorite::where('user_id', \Auth::id())
-                ->where('restaurant_id', $restaurant->id)
-                ->value('id');
+                    ->where('restaurant_id', $restaurant->id)
+                    ->value('id');
                 $restaurant->favorite_id = $favoriteId;
             });
         }
@@ -33,7 +35,8 @@ class HomeController extends Controller
         return view('index', compact('genres', 'areas', 'restaurants'));
     }
 
-    public function detail($restaurant_id){
+    public function detail($restaurant_id)
+    {
         $restaurant = Restaurant::find($restaurant_id);
 
         // 予約用
@@ -43,21 +46,22 @@ class HomeController extends Controller
         return view('detail', compact('restaurant', 'today', 'acceptDay'));
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
         $query = Restaurant::query();
 
         // クエリ生成
-        if($request->input('area')){
+        if ($request->input('area')) {
             $query->where('area_id', $request->input('area'));
         }
 
-        if($request->input('genre')){
+        if ($request->input('genre')) {
             $query->where('genre_id', $request->input('genre'));
         }
 
         if ($request->input('keyword')) {
-            $query->where('name', 'like', '%'.$request->input('keyword').'%');
+            $query->where('name', 'like', '%' . $request->input('keyword') . '%');
         }
 
         // テーブルを作成

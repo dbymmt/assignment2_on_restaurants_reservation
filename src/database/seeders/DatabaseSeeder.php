@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(AreaSeeder::class);
         $this->call(GenreSeeder::class);
+        $this->call(OwnerSeeder::class);
+        $this->call(AdminSeeder::class);
         $this->call(RestaurantSeeder::class);
         $this->call(FavoriteSeeder::class);
         $this->call(ReservationSeeder::class);
-        $this->call(OwnerSeeder::class);
-        $this->call(AdminSeeder::class);
     }
 }

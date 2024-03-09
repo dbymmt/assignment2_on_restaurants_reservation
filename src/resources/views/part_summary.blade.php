@@ -9,7 +9,11 @@
         <span class="part-summary__detail-tag">#{{ $restaurant->area->name }}</span>
         <span class="part-summary__detail-tag">#{{ $restaurant->genre->name }}</span>
         <div class="part-summary__detail-detail-heart">
-            <a href="/detail/{{$restaurant->id}}">詳しく見る</a>
+            @if(Auth::guard('owner')->check() && request()->path() === 'owner/home')
+                <a href="/owner/detail/{{$restaurant->id}}">編集する</a>
+            @else
+                <a href="/detail/{{$restaurant->id}}">詳しく見る</a>
+            @endif
             @if(Auth::check())
                 <span id="part-summary__detail-detail-restaurant{{$restaurant->id}}-heart">
                     @if($restaurant->favorite_id)

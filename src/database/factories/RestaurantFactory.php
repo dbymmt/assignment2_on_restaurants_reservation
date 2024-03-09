@@ -4,7 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Area;
-uSE App\Models\Genre;
+use App\Models\Genre;
+use App\Models\Owner;
 
 class RestaurantFactory extends Factory
 {
@@ -17,6 +18,7 @@ class RestaurantFactory extends Factory
     {
         $areas = Area::all();
         $genres = Genre::all();
+        $owners = Owner::all();
         $images = [
             'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
             'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg',
@@ -29,9 +31,10 @@ class RestaurantFactory extends Factory
             //
             'area_id' => $areas->random()->id,
             'genre_id' => $genres->random()->id,
+            'owner_id' => $owners->random()->id,
             'name' => $this->faker->name(),
-            'detail' => $this->faker->realText(rand(100,200)),
-            'image_url' => $images[rand(0,4)],
+            'detail' => $this->faker->realText(rand(100, 200)),
+            'image_url' => $images[rand(0, 4)],
         ];
     }
 }

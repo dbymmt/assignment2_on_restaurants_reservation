@@ -17,6 +17,7 @@ class CreateRestaurantsTable extends Migration
             $table->id();
             $table->foreignId('area_id')->constrained()->cascadeOnDelete();
             $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('owner_id')->constrained()->cascadeOnDelete();
             // $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
             $table->string('name');
             $table->text('detail');

@@ -1,4 +1,4 @@
-@extends('layouts.auth-template')
+{{-- @extends('layouts.auth-template')
 
 @section('title', 'Registration')
 
@@ -16,4 +16,4 @@
     </form>
 </section>
 
-@endsection
+@endsection --}}

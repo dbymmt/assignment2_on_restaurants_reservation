@@ -1,4 +1,4 @@
-@extends('layouts.auth-template')
+{{-- @extends('layouts.auth-template')
 
 @section('title', 'Login')
 
@@ -7,11 +7,6 @@
     <form action="/login" method="post">
         @csrf
         <ul class="register_login__errors-email">
-        {{-- @if($errors->has('email'))
-            @foreach($errors->get('email') as $message)
-            <li>{{ $message }}</li>
-            @endforeach
-        @endif --}}
         @include('auth.errors', ['input' => 'email'])
         </ul>
         <p class="register_login__body-input"><i class="fa-solid fa-envelope"></i><input type="text" name="email" placeholder="Email"></p>
@@ -21,4 +16,4 @@
     </form>
 </section>
 
-@endsection
+@endsection --}}
