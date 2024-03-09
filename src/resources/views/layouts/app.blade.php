@@ -62,7 +62,7 @@
                             <a href="javascript:logout.submit()">logout</a>
                         </form>
                     </li>
-                    <li class="header__list"><a href="/mypage">Mypage</a></li>
+                    <li class="header__list"><a href="/user/mypage">Mypage</a></li>
                 @else
                     <li class="header__list"><a href="/register">Registration</a></li>
                     <li class="header__list"><a href="/login">Login</a></li>

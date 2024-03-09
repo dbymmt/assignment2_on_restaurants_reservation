@@ -1,7 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function () { 
 // detailページ //
-    if(document.querySelector('[id="detail"]') != null){
+    if (document.querySelector('[id="detail"]') != null) {
+        console.log('Unko');
 
         //////////////
         // 予約確認
@@ -17,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
             let confirm_restaurant_id = confirm_restaurant.dataset.id;
 
             // フォーム
-            let formReserve = document.querySelector('form[action*="/detail/reservationAdd"]');
+            // let formReserve = document.querySelector('form[action*="/detail/reservationAdd"]');
+            let formReserve = document.querySelector('form[action*="/user/mypage/reservationAdd"]');
             let formBtn = formReserve.querySelector('input[name*="submitBtn"]');
             formBtn.disabled = true;
             formBtn.value = "予約できません";

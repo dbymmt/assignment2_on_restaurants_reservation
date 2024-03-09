@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 // 送信ボタンのクリックイベントを追加
-                // submitButton.addEventListener('click', function (event) {
                 submitButton.onclick = function (event) {
                     event.stopPropagation(); // 親要素へのイベント伝播を停止
                     let reservationId = detail.querySelector('input[name*="reservation_id"]').value;
@@ -63,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     // 送信処理を追加
                     cfmEdit = confirm('変更しますか\n\n日付:' + date.value + '\n時間:' + time + '\n人数:' + visitors);
                     if(cfmEdit === true){
-                        axios.post(`/mypage/reservationEdit?id=${reservationId}&restaurant_id=${restaurantId}&scheduled_date=${date.value}&scheduled_time=${time}&visitors=${visitors}`)
+                        // axios.post(`/mypage/reservationEdit?id=${reservationId}&restaurant_id=${restaurantId}&scheduled_date=${date.value}&scheduled_time=${time}&visitors=${visitors}`)
+                        axios.post(`/user/mypage/reservationEdit?id=${reservationId}&restaurant_id=${restaurantId}&scheduled_date=${date.value}&scheduled_time=${time}&visitors=${visitors}`)
                             .then(response => {
                                 if(response.data.result === true){
                                     alert('変更しました');
@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 外側をクリックされたら無効化
                 document.addEventListener('click', function (event) { 
                     if(!event.target.closest('.mypage-reservation__detail')){
-                    // if(event.target != this){
                         elementDisable(detail);
                     }
                 });
@@ -112,7 +111,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 let cmDelete = confirm('削除しますか');
                 if(cmDelete === true){
                     // 削除処理
-                    axios.delete(`/mypage/reservationDelete?id=${deleteIcon.dataset.reservation_id}`)
+                    // axios.delete(`/mypage/reservationDelete?id=${deleteIcon.dataset.reservation_id}`)
+                    axios.delete(`/user/mypage/reservationDelete?id=${deleteIcon.dataset.reservation_id}`)
                         .then(response => {
                             if (response.data === true) {
                                 alert('削除しました');

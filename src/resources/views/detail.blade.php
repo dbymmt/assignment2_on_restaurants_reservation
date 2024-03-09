@@ -31,7 +31,7 @@
     @if(Auth::check())
     <section class="detail-reservation">
         <h3 class="detail-reservation__title">予約</h3>
-        <form action="/detail/reservationAdd" method="post">
+        <form action="/user/mypage/reservationAdd" method="post">
             @csrf
             <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
             <dl class="detail-reservation__form-body">

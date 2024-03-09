@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (icon.classList.contains('fa-regular')) {
                     const confirmAdd = confirm('追加しますか？');
                     if (confirmAdd === true) { 
-                        axios.post(`/mypage/favoriteAdd/${restaurantId}`)
+                        axios.post(`/user/mypage/favoriteAdd/${restaurantId}`)
                         .then(response => {
                             if (response.data.result === true) {
                                 icon.classList.remove('fa-regular');
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     let favoriteId = icon.getAttribute('id').replace('favorite_', '');
                     const confirmDel = confirm('削除しますか');
                     if(confirmDel === true){
-                        axios.delete(`/mypage/favoriteDelete/${favoriteId}`)
+                        axios.delete(`/user/mypage/favoriteDelete/${favoriteId}`)
                             .then(response => {
                                 if (response.data === true) {
                                     icon.classList.remove('fa-solid');

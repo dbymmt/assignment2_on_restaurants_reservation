@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -8,10 +8,17 @@ use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class MypageController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('auth:user');
+    }
+
     public function thanks()
     {
         return view('thanks');
@@ -110,5 +117,11 @@ class MypageController extends Controller
         Reservation::find($request->id)->delete();
 
         return response()->json(true);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/'); // ログアウト後にリダイレクトするページを指定
     }
 }
