@@ -6,12 +6,12 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/owner/index.js') }}"></script>
+<script src="{{ asset('js/owner/home.js') }}"></script>
 @endsection
 
 @section('content')
 <h1 class="owner-index-restaurants__title">{{Auth::guard('owner')->check() ? $user['name'] : ''}}様の店舗一覧</h1>
-<article class="owner-index-restaurants" id="owner-index">
+<article class="owner-index-restaurants" id="owner-home">
     <section class="owner-index-restaurants-body">
         <h4 class="owner-index-restaurants-body__title">店舗一覧</h4>
         <div class="index-restaurants-body__lists">
@@ -23,7 +23,9 @@
     <section class="owner-index-restaurants__add">
         <h4 class="owner-index-restaurants-add__title">店舗新規登録</h4>
         <dl class="owner-index-restaurants__add-body">
-            <form action="/owner/add" method="POST">
+            <form action="/owner/restaurantAdd" method="POST">
+                @csrf
+                <input type="hidden" name="owner_id" value="{{$user['id']}}">
                 <dt class="owner-index-restaurants-add__name">店名：</dt>
                 <dd class="owner-index-restaurants-add__name">
                     <input type="text" id="owner-index-restaurants-add__name" name="name">
@@ -34,7 +36,7 @@
                 </dd>
                 <dt class="owner-index-restaurants-add__area">エリア：</dt>
                 <dd class="owner-index-restaurants-add__area">
-                    <select name="area" id="owner-index-restaurants-add__area">
+                    <select name="area_id" id="owner-index-restaurants-add__area">
                         <option value="">All Areas</option>
                         @foreach($areas as $area)
                             <option value="{{$area->id}}">{{$area->name}}</option>
@@ -43,7 +45,7 @@
                 </dd>
                 <dt class="owner-index-restaurants-add__genre">ジャンル：</dt>
                 <dd class="owner-index-restaurants-add__genre">
-                    <select name="genre" id="owner-index-restaurants-add__genre">
+                    <select name="genre_id" id="owner-index-restaurants-add__genre">
                         <option value="">All Genres</option>
                         @foreach($genres as $genre)
                             <option value="{{$genre->id}}">{{$genre->name}}</option>

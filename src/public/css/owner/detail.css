@@ -92,6 +92,11 @@ div[id*="owner-detail-reservation__main"] {
     font-size: 1.2vw;
 }
 
+.owner-detail-reservation__null{
+    background-color:#305DFF;
+    color: #fff;
+}
+
 .owner-detail-reservation__body>dt {
     width: 35%;
     /* font-size: 0.8em; */

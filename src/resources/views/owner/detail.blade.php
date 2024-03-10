@@ -14,8 +14,10 @@
     {{-- 店舗編集 --}}
     <section class="owner-detail-body">
         <h3 class="owner-detail-body__old-restaurant-name">{{$restaurant->name}}を編集</h3>
-        <form action="/owner/home/restaurantEdit" method="post">
+        <form action="/owner/restaurantEdit" method="post">
             @csrf
+            <input type="hidden" name="id" value="{{$restaurant->id}}">
+            <input type="hidden" name="owner_id" value="{{Auth::id()}}">
             <h3 class="owner-detail-body__title"><i class="fa-solid fa-less-than" id="owner-detail-body__title-back"></i>
                 <input type="text" name="name" value="{{ $restaurant->name }}">
             </h3>
@@ -27,13 +29,13 @@
             </div>
             <div class="owner-detail-body__information">
                 <div class="owner-detail-body__tags">
-                    <select name="area" id="owner-detail-restaurants-edit__area">
+                    <select name="area_id" id="owner-detail-restaurants-edit__area">
                         <option value="">All Areas</option>
                         @foreach($areas as $area)
                             <option value="{{$area->id}}" {{$area->id === $restaurant->area_id ? "selected" : ""}}>{{$area->name}}</option>
                         @endforeach
                     </select>
-                    <select name="genre" id="owner-detail-restaurants-edit__genre">
+                    <select name="genre_id" id="owner-detail-restaurants-edit__genre">
                         <option value="">All Genres</option>
                         @foreach($genres as $genre)
                             <option value="{{$genre->id}}" {{$genre->id === $restaurant->genre_id ? "selected": ""}}>{{$genre->name}}</option>
@@ -48,9 +50,9 @@
                 <input type="submit" value="この内容で編集する">
             </div>
         </form>
-        <form action="/owner/detail/restaurantDel/{{$restaurant->id}}">
+        <form action="/owner/restaurantDelete?id={{$restaurant->id}}" method="POST">
             @csrf
-            @method('delete')
+            @method('DELETE')
             <input type="submit" value="店舗を削除する">
         </form>
     </section>
@@ -59,6 +61,9 @@
     <section class="owner-detail-reservations-settings">
         <div class="owner-detail-reservations">
             <h3 class="owner-detail-reservation__top">{{$restaurant->name}}の予約状況</h3>
+            @if($reservations->isEmpty())
+                <h3 class="owner-detail-reservation__null">予約はありません</h3>
+            @endif
             @foreach($reservations as $reservation)
             <div id="owner-detail-reservation__main{{$loop->iteration}}">
                 <h4 class="owner-detail-reservation__title">◆予約{{$loop->iteration}}<i class="fa-regular fa-circle-xmark" data-reservation_id = "{{$reservation->id}}"></i></h4>
@@ -104,9 +109,17 @@
                         @endfor
                     </select>
                 </dd>
-                <dt class="owner-detail-settings__available-visitos">受け入れ可能人数</dt>
+                <dt class="owner-detail-settings__available-visitos">受け入れ可能最小人数</dt>
                 <dd class="owner-detail-settings__available-visitors">
-                    <select name="available-visitors" id="owner-detail-settings__visitor">
+                    <select name="min_visitors" id="owner-detail-settings__visitor">
+                        @for($i = 1; $i < 10; $i++)
+                            <option value="{{$i}}">{{$i}}人</option>
+                        @endfor
+                    </select>
+                </dd>
+                <dt class="owner-detail-settings__available-visitos">受け入れ可能最大人数</dt>
+                <dd class="owner-detail-settings__available-visitors">
+                    <select name="min_visitors" id="owner-detail-settings__visitor">
                         @for($i = 1; $i < 10; $i++)
                             <option value="{{$i}}">{{$i}}人</option>
                         @endfor

@@ -62,11 +62,11 @@ Route::namespace('Owner')->prefix('owner')->name('owner.')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
-        Route::get('home', [OwnerHomeController::class, 'index'])->name('index');
-        Route::get('detail/{id}', [OwnerHomeController::class, 'detail']);
-        Route::post('home/restaurantAdd', [OwnerHomeController::class, 'restaurantAdd']);
-        Route::post('home/restaurantEdit', [OwnerHomeController::class, 'restaurantEdit']);
-        Route::delete('home/restaurantDel', [OwnerHomeController::class, 'restaurantDel']);
+        Route::get('home', [OwnerHomeController::class, 'index'])->name('home');
+        Route::get('detail/{id}', [OwnerHomeController::class, 'detail'])->name('detail');
+        Route::post('/restaurantAdd', [OwnerHomeController::class, 'restaurantAdd']);
+        Route::post('/restaurantEdit', [OwnerHomeController::class, 'restaurantEdit']);
+        Route::delete('/restaurantDelete', [OwnerHomeController::class, 'restaurantDelete']);
     });
 });
 

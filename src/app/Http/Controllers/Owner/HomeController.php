@@ -42,11 +42,10 @@ class HomeController extends Controller
         $input = $request->all();
         unset($input['_token']);
 
-        dd($input);
+        // dd($input);
 
         Restaurant::create($input);
 
-        // return view('owner.home');
         return redirect()->route('owner.home');
     }
 
@@ -55,25 +54,23 @@ class HomeController extends Controller
         $input = $request->all();
         unset($input['_token']);
 
-        dd($input);
+        // dd($input);
 
         Restaurant::find($input['id'])->update($input);
 
-        // return view('owner.detail');
-        return redirect()->route('owner.detail');
+        return redirect()->route('owner.home');
     }
 
     public function restaurantDelete(Request $request)
     {
-        dd($request->id);
+        // dd($request->id);
         Restaurant::find($request->id)->delete();
 
-        // return view('owner.home');
         return redirect()->route('owner.home');
     }
 
-    public function reservationDelete()
-    {
-        // 予約削除処理
-    }
+    // public function reservationDelete()
+    // {
+    //     // 予約削除処理
+    // }
 }
