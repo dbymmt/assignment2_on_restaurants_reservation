@@ -102,7 +102,7 @@ Route::get('/detail/{id}', [IndexController::class, 'detail']);
 Route::get('/thanks', [MypageController::class, 'thanks']);
 
 // マイページ用
-// Route::get('/mypage', [MypageController::class, 'index']);
+Route::get('/mypage', [MypageController::class, 'index']);
 
 
 // Route::get('/', function () {
