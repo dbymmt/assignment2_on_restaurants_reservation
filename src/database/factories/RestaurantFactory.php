@@ -34,6 +34,7 @@ class RestaurantFactory extends Factory
             'owner_id' => $owners->random()->id,
             'name' => $this->faker->name(),
             'detail' => $this->faker->realText(rand(100, 200)),
+            'acceptable_days' => random_int(1, 10),
             'image_url' => $images[rand(0, 4)],
         ];
     }

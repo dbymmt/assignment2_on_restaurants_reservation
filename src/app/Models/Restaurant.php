@@ -14,6 +14,7 @@ class Restaurant extends Model
         'genre_id',
         'owner_id',
         'name',
+        'acceptable_days',
         'detail',
         'image_url',
     ];

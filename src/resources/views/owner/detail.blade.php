@@ -5,6 +5,7 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/owner/detail.js') }}"></script>
 @endsection
 
@@ -18,36 +19,40 @@
             @csrf
             <input type="hidden" name="id" value="{{$restaurant->id}}">
             <input type="hidden" name="owner_id" value="{{Auth::id()}}">
-            <h3 class="owner-detail-body__title"><i class="fa-solid fa-less-than" id="owner-detail-body__title-back"></i>
-                <input type="text" name="name" value="{{ $restaurant->name }}">
-            </h3>
+            <p class="owner-detail-body__title"><i class="fa-solid fa-less-than" id="detail-body__title-back"></i>
+                店名:<input type="text" name="name" value="{{ $restaurant->name }}">
+            </p>
             <div class="owner-detail-body-edit__image-url">
-                <input type="text" name="image_url" value="{{$restaurant->image_url}}">
+                URL:<input type="text" name="image_url" value="{{$restaurant->image_url}}">
             </div>
             <div class="owner-detail-body__img">
                 <img src="{{$restaurant->image_url}}" alt="{{$restaurant->name}}">
             </div>
             <div class="owner-detail-body__information">
                 <div class="owner-detail-body__tags">
-                    <select name="area_id" id="owner-detail-restaurants-edit__area">
+                    地域:<select name="area_id" id="owner-detail-restaurants-edit__area">
                         <option value="">All Areas</option>
                         @foreach($areas as $area)
                             <option value="{{$area->id}}" {{$area->id === $restaurant->area_id ? "selected" : ""}}>{{$area->name}}</option>
                         @endforeach
                     </select>
-                    <select name="genre_id" id="owner-detail-restaurants-edit__genre">
+                    ジャンル:<select name="genre_id" id="owner-detail-restaurants-edit__genre">
                         <option value="">All Genres</option>
                         @foreach($genres as $genre)
                             <option value="{{$genre->id}}" {{$genre->id === $restaurant->genre_id ? "selected": ""}}>{{$genre->name}}</option>
                         @endforeach
                     </select>
                 </div>
+                <div class="owner-detail-body-edit__acceptable-days">
+                    予約猶予日数:<input type="text" name="acceptable_days" id="owner-detail-restaurants-edit__acceptable-days" value="{{$restaurant->acceptable_days}}">
+                </div>
                 <div class="owner-detail-body__detail-phrase">
-                    <textarea name="detail" id="" cols="30" rows="10">{{$restaurant->detail}}</textarea>
+                    詳細:<textarea name="detail" id="" cols="30" rows="10">{{$restaurant->detail}}</textarea>
                 </div>
             </div>
             <div class="owner-detail-body__detail-submit">
-                <input type="submit" value="この内容で編集する">
+                {{-- <input type="submit" value="この内容で編集する"> --}}
+                <button id="owner-detail-body__submit">この内容で編集する</button>
             </div>
         </form>
         <form action="/owner/restaurantDelete?id={{$restaurant->id}}" method="POST">
@@ -71,25 +76,14 @@
                     <input type="hidden" name="reservation_id" value="{{$reservation->id}}">
                     <dt>Date</dt>
                     <dd class="owner-detail-reservation__detail-date" data-date="{{$reservation->scheduled_date}}">
-                        {{-- <input type="date" name="scheduled_date" data-limit="2" value="{{$reservation->scheduled_date}}" disabled> --}}
                         {{$reservation->scheduled_date}}
                     </dd>
                     <dt>Time</dt>
                     <dd class="owner-detail-reservation__detail-time" >
-                        {{-- <select name="scheduled_time" id="owner-detail-reservation__time{{$loop->iteration}}" data-time="{{$reservation->scheduled_time}}" disabled>
-                            @for($i=0; $i<24; $i++)
-                            <option value="{{$i.':00'}}" {{ (( $i < 10 ? $i = '0'.$i : $i).':00:00') == $reservation->scheduled_time ? "selected" : ""}}>{{$i}}:00</option>
-                            @endfor
-                        </select> --}}
                         {{$reservation->scheduled_time}}
                     </dd>
                     <dt>Number</dt>
                     <dd class="owner-detail-reservation__detail-visitors" >
-                        {{-- <select name="visitors" id="owner-detail-reservation__visitors{{$loop->iteration}}" data-visitors="{{$reservation->visitors}}" disabled>
-                            @for($i=1; $i<9; $i++)
-                            <option value="{{$i}}" {{$i == $reservation->visitors ? "selected"  : ""}}>{{$i}}人</option>
-                            @endfor
-                        </select> --}}
                         {{$reservation->visitors}}
                     </dd>
                     <button disabled="true">送信</button>
@@ -97,7 +91,7 @@
             </div>
             @endforeach
         </div>
-        <div class="owner-detail-settings">
+        {{-- <div class="owner-detail-settings">
             <h3 class="owner-detail-settings__title">{{$restaurant->name}}の情報</h3>
             <dl class="owner-detail-settings__body">
                 <dt class="owner-detail-settings__margin-days">予約猶予</dt>
@@ -126,7 +120,7 @@
                     </select>
                 </dd>
             </dl>
-        </div>
+        </div> --}}
     </section>
 </article>
 

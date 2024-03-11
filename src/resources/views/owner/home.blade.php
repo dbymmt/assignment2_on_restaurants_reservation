@@ -52,12 +52,16 @@
                         @endforeach
                     </select>
                 </dd>
+                <dt class="owner-index-restaurants-add__acceptable-days">予約猶予日数：</dt>
+                <dd class="owner-index-restaurants-add__acceptable-days">
+                    <input type="text" id="owner-index-restaurants-add__acceptable-days" name="acceptable_days" value="2">
+                </dd>
                 <dt class="owner-index-restaurants-add__detail">詳細：</dt>
                 <dd class="owner-index-restaurants-add__detail">
                     <textarea name="detail" id="owner-index-restaurants-add__detail" cols="30" rows="10"></textarea>
                 </dd>
                 <div class="owner-index-restaurants-add-form">
-                    <input type="submit" value="店舗追加">
+                    <button id="owner-index-restaurants-add__submit">店舗追加</button>
                 </div>
             </form>
         </dl>

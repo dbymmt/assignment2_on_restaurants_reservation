@@ -38,10 +38,10 @@ class IndexController extends Controller
     public function detail($restaurant_id)
     {
         $restaurant = Restaurant::find($restaurant_id);
-
-        // 予約用
+        // 予約猶予用
         $today = Carbon::today();
-        $acceptDay = $today->addDay(2)->format('Y-m-d');
+        $acceptable_day = $restaurant->acceptable_days;
+        $acceptDay = $today->addDay($acceptable_day)->format('Y-m-d');
 
         return view('detail', compact('restaurant', 'today', 'acceptDay'));
     }

@@ -50,6 +50,6 @@ class RestaurantSeeder extends Seeder
         }
 
         // ランダムデータ
-        Restaurant::factory(18)->create();
+        Restaurant::factory(28)->create();
     }
 }
