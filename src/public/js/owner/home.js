@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () { 
 
     if (document.querySelector('article[id*="owner-home"]')) {
@@ -22,5 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = confirm('登録しますか？\n' + '\n店舗名:' + restaurantName + '\n地域:' + restaurantAreaSelectTxt + '\nジャンル:' + restaurantGenreSelectTxt + '\n予約猶予日数:' + restaurantAcceptableDays + '\n詳細:' + restaurantDetail);
             if (result === true) editForm.submit();
         });
+
+
+        /////////////////////
+        // 追加フォーム画像確認
+        /////////////////////
+        var inputElement = document.getElementById('owner-index-restaurants-add__image');
+        inputElement.addEventListener('change', function() {
+            var file = inputElement.files[0];
+            if (!file || !(file.type === 'image/jpeg' || file.type === 'image/png')) {
+                alert('ファイルは拡張子jpgもしくはpngのファイルを選択してください');
+            }
+        });
+
     }
 });
