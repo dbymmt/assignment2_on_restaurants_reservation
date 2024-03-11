@@ -20,11 +20,11 @@ class RestaurantFactory extends Factory
         $genres = Genre::all();
         $owners = Owner::all();
         $images = [
-            'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
-            'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg',
-            'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/izakaya.jpg',
-            'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',
-            'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jpg',
+            '/storage/images/sushi.jpg',
+            '/storage/images/yakiniku.jpg',
+            '/storage/images/izakaya.jpg',
+            '/storage/images/italian.jpg',
+            '/storage/images/ramen.jpg',
         ];
 
         return [
