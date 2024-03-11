@@ -14,7 +14,7 @@
     <section class="detail-body">
         <h3 class="detail-body__title"><i class="fa-solid fa-less-than" id="detail-body__title-back"></i>{{ $restaurant->name }}</h3>
         <div class="detail-body__img">
-            <img src="{{$restaurant->image_url}}" alt="{{$restaurant->name}}">
+            <img src="{{asset($restaurant->image_url)}}" alt="{{$restaurant->name}}">
         </div>
         <div class="detail-body__information">
             <div class="detail-body__tags">

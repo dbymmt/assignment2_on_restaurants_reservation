@@ -1,6 +1,6 @@
 <div id="part-summary-restaurant{{$restaurant->id}}">
     <div class="part-summary__img">
-        <img src="{{ $restaurant->image_url }}" alt="{{$restaurant->name}}">
+        <img src="{{ asset($restaurant->image_url) }}" alt="{{$restaurant->name}}">
     </div>
     <div class="part-summary__detail">
         <h3 class="part-summary__detail-name">

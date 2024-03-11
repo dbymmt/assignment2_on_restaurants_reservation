@@ -23,16 +23,16 @@
     <section class="owner-index-restaurants__add">
         <h4 class="owner-index-restaurants-add__title">店舗新規登録</h4>
         <dl class="owner-index-restaurants__add-body">
-            <form action="/owner/restaurantAdd" method="POST">
+            <form action="/owner/restaurantAdd" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="owner_id" value="{{$user['id']}}">
                 <dt class="owner-index-restaurants-add__name">店名：</dt>
                 <dd class="owner-index-restaurants-add__name">
                     <input type="text" id="owner-index-restaurants-add__name" name="name">
                 </dd>
-                <dt class="owner-index-restaurants-add__image-url">画像URL：</dt>
-                <dd class="owner-index-restaurants-add__image-url">
-                    <input type="text" id="owner-index-restaurants-add__image-url" name="image_url">
+                <dt class="owner-index-restaurants-add__image">画像：</dt>
+                <dd class="owner-index-restaurants-add__image">
+                    <input type="file" id="owner-index-restaurants-add__image" name="image">
                 </dd>
                 <dt class="owner-index-restaurants-add__area">エリア：</dt>
                 <dd class="owner-index-restaurants-add__area">

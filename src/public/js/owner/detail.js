@@ -1,3 +1,20 @@
+// 画像が選択されたときに実行される関数
+function previewImage(input) {
+    var preview = document.querySelector('.owner-detail-body__img img');
+    var file = input.files[0];
+    var reader = new FileReader();
+
+    if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+        reader.onloadend = function () {
+            preview.src = reader.result; // プレビューとして画像を表示
+        }
+        reader.readAsDataURL(file); // 選択された画像を読み込み
+    } else {
+        preview.src = ''; // ファイルが選択されていない場合はプレビューをクリア
+        alert('ファイルは拡張子jpgもしくはpngのファイルを選択してください');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () { 
 
     if (document.querySelector('article[id*="owner-detail"]')) {

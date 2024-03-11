@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Area;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -39,8 +40,14 @@ class HomeController extends Controller
 
     public function restaurantAdd(Request $request)
     {
-        $input = $request->all();
-        unset($input['_token']);
+        // $input = $request->all();
+        $input = $request->except('_token', 'image');
+
+        // 画像を保存する
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $input['image_url'] = Storage::url($imagePath);
+        }
 
         // dd($input);
 
@@ -51,8 +58,13 @@ class HomeController extends Controller
 
     public function restaurantEdit(Request $request)
     {
-        $input = $request->all();
-        unset($input['_token']);
+        $input = $request->except('_token', 'image');
+
+        // 画像を保存する
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $input['image_url'] = Storage::url($imagePath);
+        }
 
         // dd($input);
 

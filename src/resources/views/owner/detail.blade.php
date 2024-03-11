@@ -15,7 +15,7 @@
     {{-- 店舗編集 --}}
     <section class="owner-detail-body">
         <h3 class="owner-detail-body__old-restaurant-name">{{$restaurant->name}}を編集</h3>
-        <form action="/owner/restaurantEdit" method="post">
+        <form action="/owner/restaurantEdit" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$restaurant->id}}">
             <input type="hidden" name="owner_id" value="{{Auth::id()}}">
@@ -23,10 +23,10 @@
                 店名:<input type="text" name="name" value="{{ $restaurant->name }}">
             </p>
             <div class="owner-detail-body-edit__image-url">
-                URL:<input type="text" name="image_url" value="{{$restaurant->image_url}}">
+                画像:<input type="file" name="image" onchange="previewImage(this)">
             </div>
             <div class="owner-detail-body__img">
-                <img src="{{$restaurant->image_url}}" alt="{{$restaurant->name}}">
+                <img src="{{asset($restaurant->image_url)}}" alt="{{$restaurant->name}}">
             </div>
             <div class="owner-detail-body__information">
                 <div class="owner-detail-body__tags">
@@ -51,7 +51,6 @@
                 </div>
             </div>
             <div class="owner-detail-body__detail-submit">
-                {{-- <input type="submit" value="この内容で編集する"> --}}
                 <button id="owner-detail-body__submit">この内容で編集する</button>
             </div>
         </form>
@@ -91,36 +90,6 @@
             </div>
             @endforeach
         </div>
-        {{-- <div class="owner-detail-settings">
-            <h3 class="owner-detail-settings__title">{{$restaurant->name}}の情報</h3>
-            <dl class="owner-detail-settings__body">
-                <dt class="owner-detail-settings__margin-days">予約猶予</dt>
-                <dd class="owner-detail-settings__margin-days">
-                    中
-                    <select name="margin_days" id="owner-detail-settings__margin">
-                        @for($i = 1; $i < 10; $i++)
-                            <option value="{{$i}}">{{$i}}日</option>
-                        @endfor
-                    </select>
-                </dd>
-                <dt class="owner-detail-settings__available-visitos">受け入れ可能最小人数</dt>
-                <dd class="owner-detail-settings__available-visitors">
-                    <select name="min_visitors" id="owner-detail-settings__visitor">
-                        @for($i = 1; $i < 10; $i++)
-                            <option value="{{$i}}">{{$i}}人</option>
-                        @endfor
-                    </select>
-                </dd>
-                <dt class="owner-detail-settings__available-visitos">受け入れ可能最大人数</dt>
-                <dd class="owner-detail-settings__available-visitors">
-                    <select name="min_visitors" id="owner-detail-settings__visitor">
-                        @for($i = 1; $i < 10; $i++)
-                            <option value="{{$i}}">{{$i}}人</option>
-                        @endfor
-                    </select>
-                </dd>
-            </dl>
-        </div> --}}
     </section>
 </article>
 
