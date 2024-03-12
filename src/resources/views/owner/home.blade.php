@@ -27,14 +27,29 @@
                 @csrf
                 <input type="hidden" name="owner_id" value="{{$user['id']}}">
                 <dt class="owner-index-restaurants-add__name">店名：</dt>
+                @error('name')
+                    <span class="owner-index-restaurants-add__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
                 <dd class="owner-index-restaurants-add__name">
                     <input type="text" id="owner-index-restaurants-add__name" name="name">
                 </dd>
                 <dt class="owner-index-restaurants-add__image">画像：</dt>
+                @error('image')
+                    <span class="owner-index-restaurants-add__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
                 <dd class="owner-index-restaurants-add__image">
                     <input type="file" id="owner-index-restaurants-add__image" name="image">
                 </dd>
                 <dt class="owner-index-restaurants-add__area">エリア：</dt>
+                @error('area_id')
+                    <span class="owner-index-restaurants-add__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
                 <dd class="owner-index-restaurants-add__area">
                     <select name="area_id" id="owner-index-restaurants-add__area">
                         <option value="">All Areas</option>
@@ -44,6 +59,11 @@
                     </select>
                 </dd>
                 <dt class="owner-index-restaurants-add__genre">ジャンル：</dt>
+                @error('genre_id')
+                    <span class="owner-index-restaurants-add__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
                 <dd class="owner-index-restaurants-add__genre">
                     <select name="genre_id" id="owner-index-restaurants-add__genre">
                         <option value="">All Genres</option>
@@ -53,10 +73,20 @@
                     </select>
                 </dd>
                 <dt class="owner-index-restaurants-add__acceptable-days">予約猶予日数：</dt>
+                @error('acceptable_days')
+                    <span class="owner-index-restaurants-add__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
                 <dd class="owner-index-restaurants-add__acceptable-days">
                     <input type="text" id="owner-index-restaurants-add__acceptable-days" name="acceptable_days" value="2">
                 </dd>
                 <dt class="owner-index-restaurants-add__detail">詳細：</dt>
+                @error('detail')
+                    <span class="owner-index-restaurants-add__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
                 <dd class="owner-index-restaurants-add__detail">
                     <textarea name="detail" id="owner-index-restaurants-add__detail" cols="30" rows="10"></textarea>
                 </dd>

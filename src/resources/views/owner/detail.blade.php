@@ -21,9 +21,20 @@
             <input type="hidden" name="owner_id" value="{{Auth::id()}}">
             <p class="owner-detail-body__title"><i class="fa-solid fa-less-than" id="detail-body__title-back"></i>
                 店名:<input type="text" name="name" value="{{ $restaurant->name }}">
+                @error('name')
+                <span class="owner-detail-body-edit__error" role="alert">
+                    {{ $message }}
+                </span>
+            @enderror
             </p>
             <div class="owner-detail-body-edit__image-url">
-                画像:<input type="file" name="image" onchange="previewImage(this)">
+                画像:
+                @error('image')
+                    <span class="owner-detail-body-edit__error" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+                <input type="file" name="image" onchange="previewImage(this)">
             </div>
             <div class="owner-detail-body__img">
                 <img src="{{asset($restaurant->image_url)}}" alt="{{$restaurant->name}}">
@@ -42,12 +53,33 @@
                             <option value="{{$genre->id}}" {{$genre->id === $restaurant->genre_id ? "selected": ""}}>{{$genre->name}}</option>
                         @endforeach
                     </select>
+                    @error('area_id')
+                        <span class="owner-detail-body-edit__error" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                    @error('genre_id')
+                        <span class="owner-detail-body-edit__error" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="owner-detail-body-edit__acceptable-days">
                     予約猶予日数:<input type="text" name="acceptable_days" id="owner-detail-restaurants-edit__acceptable-days" value="{{$restaurant->acceptable_days}}">
+                    @error('acceptable_days')
+                        <span class="owner-detail-body-edit__error" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="owner-detail-body__detail-phrase">
-                    詳細:<textarea name="detail" id="" cols="30" rows="10">{{$restaurant->detail}}</textarea>
+                    詳細:
+                    @error('detail')
+                        <span class="owner-detail-body-edit__error" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                    <textarea name="detail" id="" cols="30" rows="10">{{$restaurant->detail}}</textarea>
                 </div>
             </div>
             <div class="owner-detail-body__detail-submit">
@@ -57,7 +89,9 @@
         <form action="/owner/restaurantDelete?id={{$restaurant->id}}" method="POST">
             @csrf
             @method('DELETE')
-            <input type="submit" value="店舗を削除する">
+            <div class="owner-detail-body-delete__submit">
+                <input type="submit" value="店舗を削除する">
+            </div>
         </form>
     </section>
 

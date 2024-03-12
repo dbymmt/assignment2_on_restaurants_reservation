@@ -25,7 +25,8 @@
         <header class="header">
             <div class="header__logo">
                 <h1 id="header__menu-open">
-                    <i class="fa-solid fa-chart-simple fa-rotate-90"></i>Rese Staff Only
+                    <i class="fa-solid fa-chart-simple fa-rotate-90"></i>
+                    <a href="{{route('owner.home')}}">Rese Staff Only</a>
                 </h1>
             </div>
 
@@ -42,46 +43,8 @@
                 </form>
                 @endif
             </nav>
-            {{-- @if(request()->path() === "/")
-            <div class="header__search-menu">
-                <select name="area" id="header__search-area">
-                    <option value="">All Areas</option>
-                    @foreach($areas as $area)
-                        <option value="{{$area->id}}">{{$area->name}}</option>
-                    @endforeach
-                </select>
-                <select name="genre" id="header__search-genre">
-                    <option value="">All Genres</option>
-                    @foreach($genres as $genre)
-                        <option value="{{$genre->id}}">{{$genre->name}}</option>
-                    @endforeach
-                </select>
-                <input type="text" name="keyword" id="header__search-keyword" placeholder="Input restaurant name">
-            </div>
-            @endif --}}
         </header>
 
-        {{-- ホームメニュー --}}
-        {{-- <nav id="header__nav">
-            <h1 id="header__menu-close">
-                <i class="fa-solid fa-square-xmark"></i>
-            </h1>
-            <ul class="header__menu">
-                <li class="header__list"><a href="/">Home</a></li>
-                @if(Auth::check())
-                    <li class="header__list">
-                        <form action="{{route('user.logout')}}" name="logout" method="POST">
-                            @csrf
-                            <a href="javascript:logout.submit()">logout</a>
-                        </form>
-                    </li>
-                    <li class="header__list"><a href="/mypage">Mypage</a></li>
-                @else
-                    <li class="header__list"><a href="/register">Registration</a></li>
-                    <li class="header__list"><a href="/login">Login</a></li>
-                @endif
-            </ul>
-        </nav> --}}
         <main>
             @yield('content')
         </main>

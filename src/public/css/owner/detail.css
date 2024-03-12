@@ -55,6 +55,37 @@ article.owner-detail-main {
     width: 100%;
 }
 
+#owner-detail-body__submit,
+.owner-detail-body-delete__submit>input[value="店舗を削除する"] {
+    width: 100%;
+    color: #fff;
+    border-radius: 3px;
+}
+
+#owner-detail-body__submit {
+    background-color: #305DFF;
+}
+
+/* 削除 */
+
+.owner-detail-body-delete__submit {
+    margin-top: 20px;
+}
+
+.owner-detail-body-delete__submit>input[value="店舗を削除する"] {
+    background-color: rgb(255, 0, 0);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.owner-detail-body-edit__error {
+    color: red;
+    font-weight: 700;
+}
+
+
+
+
 /* 予約 */
 
 .owner-detail-reservations-settings {
@@ -108,9 +139,5 @@ div[id*="owner-detail-reservation__main"] {
     margin-left: 0;
 }
 
-/* .owner-detail-reservation__form-body>input,
-.owner-detail-reservation__form-body>select {
-    display: block;
-}
- */
+
 

@@ -16,3 +16,8 @@
     padding: 30px 15px;
     border-radius: 10px;
 }
+
+.owner-index-restaurants-add__error {
+    color:red;
+    font-weight: 700;
+}

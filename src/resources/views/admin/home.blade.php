@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    {{-- <h1>{{Auth::guard('admin')->check() ? 'admin' : 'no-admin'}}</h1> --}}
+
 <article class="admin-home" id="admin-home">
     <section class="admin-home__owner-form">
         <h2 class="admin-home__owner-form-title">オーナー登録フォーム</h2>
@@ -30,19 +30,6 @@
         </form>
         </dl>
     </section>
-
-    <?php
-        // $owners = [
-        //     [
-        //         'name' => 'テスト1',
-        //         'email' => 'test1@test.org'
-        //     ],
-        //     [
-        //         'name' => 'てすと1',
-        //         'email' => 'tset1@tset.org'
-        //     ]
-        // ];
-    ?>
 
     <section class="admin-home__owner-lists">
         <h2 class="admin-home__owner-form-title">オーナー一覧</h2>
