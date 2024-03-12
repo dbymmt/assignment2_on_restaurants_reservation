@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\MypageController;
 use App\Http\Controllers\Owner\HomeController as OwnerHomeController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 
 
 /*
@@ -84,7 +85,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin')->group(function () {
 
         // TOPページ
-        Route::resource('home', 'HomeController', ['only' => 'index']);
+        // Route::resource('home', 'HomeController', ['only' => 'index']);
+        Route::get('home', [AdminHomeController::class, 'index'])->name('home');
+        Route::post('ownerAdd', [AdminHomeController::class, 'ownerAdd']);
     });
 });
 
