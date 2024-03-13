@@ -41,7 +41,6 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
         Route::post('/mypage/favoriteAdd/{id}', [MypageController::class, 'favoriteAdd']);
         Route::delete('/mypage/favoriteDelete/{id}', [MypageController::class, 'favoriteDelete']);
-        // Route::post('/detail/reservationAdd', [MypageController::class, 'reservationAdd']);
         Route::post('/mypage/reservationAdd', [MypageController::class, 'reservationAdd']);
         Route::post('/mypage/reservationEdit', [MypageController::class, 'reservationEdit']);
         Route::delete('/mypage/reservationDelete', [MypageController::class, 'reservationDelete']);
@@ -62,7 +61,7 @@ Route::namespace('Owner')->prefix('owner')->name('owner.')->group(function () {
     Route::middleware('auth:owner')->group(function () {
 
         // TOPページ
-        Route::resource('home', 'HomeController', ['only' => 'index']);
+        // Route::resource('home', 'HomeController', ['only' => 'index']);
         Route::get('home', [OwnerHomeController::class, 'index'])->name('home');
         Route::get('detail/{id}', [OwnerHomeController::class, 'detail'])->name('detail');
         Route::post('/restaurantAdd', [OwnerHomeController::class, 'restaurantAdd']);

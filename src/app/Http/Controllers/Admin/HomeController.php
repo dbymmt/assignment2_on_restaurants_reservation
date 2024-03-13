@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\OwnerRegistrationRequest;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
         return view('admin.home', compact('owners', 'users'));
     }
 
-    public function ownerAdd(Request $request)
+    // public function ownerAdd(Request $request)
+    public function ownerAdd(OwnerRegistrationRequest $request)
     {
         $input = $request->except('_token');
         // dd($input);
