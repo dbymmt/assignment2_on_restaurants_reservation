@@ -39,11 +39,18 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
         // TOPページ
         Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
+        // お気に入り機能
         Route::post('/mypage/favoriteAdd/{id}', [MypageController::class, 'favoriteAdd']);
         Route::delete('/mypage/favoriteDelete/{id}', [MypageController::class, 'favoriteDelete']);
+        // 予約機能
         Route::post('/mypage/reservationAdd', [MypageController::class, 'reservationAdd']);
         Route::post('/mypage/reservationEdit', [MypageController::class, 'reservationEdit']);
         Route::delete('/mypage/reservationDelete', [MypageController::class, 'reservationDelete']);
+        // レビュー機能
+        Route::get('/review/{id}', function ($id) {
+            return view('review', ['id' => $id]);
+        });
+        // Route::post('/review/reviewAdd', []);
     });
 });
 

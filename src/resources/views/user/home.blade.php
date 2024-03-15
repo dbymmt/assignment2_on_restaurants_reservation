@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('css')
 @endsection
@@ -8,4 +8,4 @@
 
 @section('content')
     <h1>{{Auth::guard('user')->check() ? 'user' : 'no-user'}}</h1>
-@endsection
+@endsection --}}
