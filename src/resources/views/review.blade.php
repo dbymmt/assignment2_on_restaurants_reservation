@@ -10,11 +10,11 @@
 
 @section('content')
 <?php
-    $reviews = App\Models\Review::where('restaurant_id', $id)->get();
-    $score_avg = $reviews->avg('score');
-    $count = $reviews->count();
-    $restaurant_name = $reviews->first()->restaurant->name;
-    $today = Carbon\Carbon::now()->format('Y-m-d');
+    // $reviews = App\Models\Review::where('restaurant_id', $id)->get();
+    // $score_avg = $reviews->avg('score');
+    // $count = $reviews->count();
+    // $restaurant_name = $reviews->first()->restaurant->name;
+    // $today = Carbon\Carbon::now()->format('Y-m-d');
 ?>
 <article class="review-main" id="review-main">
     <section class="review-title">
