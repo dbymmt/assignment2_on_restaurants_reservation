@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\MypageController;
 use App\Http\Controllers\Owner\HomeController as OwnerHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\User\ReviewController;
 
 
 /*
@@ -47,10 +48,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::post('/mypage/reservationEdit', [MypageController::class, 'reservationEdit']);
         Route::delete('/mypage/reservationDelete', [MypageController::class, 'reservationDelete']);
         // レビュー機能
-        Route::get('/review/{id}', function ($id) {
-            return view('review', ['id' => $id]);
-        });
-        // Route::post('/review/reviewAdd', []);
+        Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
+        Route::post('/review/reviewAdd', [ReviewController::class, 'reviewAdd']);
     });
 });
 
