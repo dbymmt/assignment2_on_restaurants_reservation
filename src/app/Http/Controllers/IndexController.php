@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Restaurant;
 use App\Models\Favorite;
 use App\Models\Reservation;
+use App\Models\Review;
 
 // class HomeController extends Controller
 class IndexController extends Controller
@@ -43,7 +44,19 @@ class IndexController extends Controller
         $acceptable_day = $restaurant->acceptable_days;
         $acceptDay = $today->addDay($acceptable_day)->format('Y-m-d');
 
-        return view('detail', compact('restaurant', 'today', 'acceptDay'));
+        $reviews = Review::where('restaurant_id', $restaurant_id);
+
+        // レビュー無し
+        $score_avg = '評価無し';
+        $count = 0;
+
+        // レビュー有り
+        if($reviews->count() > 0){
+            $score_avg = $reviews->avg('score');
+            $count = $reviews->count();    
+        }
+
+        return view('detail', compact('restaurant', 'today', 'acceptDay', 'score_avg', 'count'));
     }
 
     public function search(Request $request)

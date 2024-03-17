@@ -48,7 +48,6 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::post('/mypage/reservationEdit', [MypageController::class, 'reservationEdit']);
         Route::delete('/mypage/reservationDelete', [MypageController::class, 'reservationDelete']);
         // レビュー機能
-        Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
         Route::post('/review/reviewAdd', [ReviewController::class, 'reviewAdd']);
     });
 });
@@ -104,8 +103,12 @@ Route::get('/register', [App\Http\Controllers\User\Auth\RegisterController::clas
 // 検索部
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/search', [IndexController::class, 'search']);
+
+// 詳細
 Route::get('/detail/{id}', [IndexController::class, 'detail']);
 
+// レビュー
+Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
 
 Route::get('/thanks', [MypageController::class, 'thanks']);
 

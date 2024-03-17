@@ -21,6 +21,7 @@
             <dd class="review-title__restaurant-review-number">{{$count}}件</dd>
         </dl>
     </section>
+    @if(Auth::guard('user')->check())
     <section class="review-form-input">
         <dl class="review-form-input__form">
         <form action="/user/review/reviewAdd" method="post">
@@ -49,6 +50,8 @@
         </form>
         </dl>
     </section>
+    @endif
+
     <section class="review-reviews">
         @if($reviews->count() > 0)
         @foreach($reviews as $review)

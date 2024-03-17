@@ -41,7 +41,7 @@ class ReviewController extends Controller
 
         Review::create($input);
 
-        return redirect()->route('user.review', ['id' => $restaurant_id]);
+        return redirect()->route('review', ['id' => $restaurant_id]);
     }
 
 }
