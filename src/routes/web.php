@@ -7,7 +7,7 @@ use App\Http\Controllers\User\MypageController;
 use App\Http\Controllers\Owner\HomeController as OwnerHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\User\ReviewController;
-
+use App\Http\Controllers\Owner\MemberOnlyNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,12 +66,15 @@ Route::namespace('Owner')->prefix('owner')->name('owner.')->group(function () {
     Route::middleware('auth:owner')->group(function () {
 
         // TOPページ
-        // Route::resource('home', 'HomeController', ['only' => 'index']);
         Route::get('home', [OwnerHomeController::class, 'index'])->name('home');
         Route::get('detail/{id}', [OwnerHomeController::class, 'detail'])->name('detail');
         Route::post('/restaurantAdd', [OwnerHomeController::class, 'restaurantAdd']);
         Route::post('/restaurantEdit', [OwnerHomeController::class, 'restaurantEdit']);
         Route::delete('/restaurantDelete', [OwnerHomeController::class, 'restaurantDelete']);
+
+        // お知らせメール
+        Route::get('/MemberOnlyNotification', [MemberOnlyNotificationController::class, 'index'])->name('mailIndex');
+        Route::get('/MemberOnlyNotification/sendMail', [MemberOnlyNotificationController::class, 'sendMail'])->name('sendMail');
     });
 });
 

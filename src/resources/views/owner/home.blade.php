@@ -95,6 +95,9 @@
                 </div>
             </form>
         </dl>
+        <div class="owner-index-mail">
+            <a href="{{route('owner.mailIndex')}}">お知らせ作成/送信</a>
+        </div>
     </section>
 </article>
 @endsection
