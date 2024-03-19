@@ -3,23 +3,25 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use App\Notification\MemberOnlyNotification;
+use App\Notifications\MemberOnlyNotification;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class MemberOnlyNotificationController extends Controller
 {
     //
     public function index()
     {
-        return view('owner.notification');
+        return view('owner.template');
     }
 
     public function sendMail(Request $request)
     {
-        $users = User::where('email_accepted', true)->get();
+        $mailTemplate = $request->input('mail_template');
+        $users = User::where('mail_accepting', 1)->get();
 
         foreach ($users as $user) {
-            $user->notify(new MemberOnlyNotification($user));
+            $user->notify(new MemberOnlyNotification($user, $mailTemplate));
         }
 
         return back()->with('message', 'メールを送信しました');

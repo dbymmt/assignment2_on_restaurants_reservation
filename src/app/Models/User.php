@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'mail_accepting',
     ];
 
     /**
@@ -43,15 +44,18 @@ class User extends Authenticatable
     ];
 
 
-    public function restaurants(){
+    public function restaurants()
+    {
         return $this->hasMany('App\Models\Restaurant');
     }
 
-    public function favorites(){
+    public function favorites()
+    {
         return $this->hasMany('App\Models\Favorite');
     }
 
-    public function reservations(){
+    public function reservations()
+    {
         return $this->hasMany('App\Models\Reservation');
     }
 

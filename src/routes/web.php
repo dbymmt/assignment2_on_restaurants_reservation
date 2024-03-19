@@ -8,6 +8,7 @@ use App\Http\Controllers\Owner\HomeController as OwnerHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\Owner\MemberOnlyNotificationController;
+use App\Http\Controllers\User\NotificationExitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::delete('/mypage/reservationDelete', [MypageController::class, 'reservationDelete']);
         // レビュー機能
         Route::post('/review/reviewAdd', [ReviewController::class, 'reviewAdd']);
+
+        // メルマガ解約機能
+        Route::get('/mail/exit', [NotificationExitController::class, 'exitMail']);
     });
 });
 
@@ -74,7 +78,7 @@ Route::namespace('Owner')->prefix('owner')->name('owner.')->group(function () {
 
         // お知らせメール
         Route::get('/MemberOnlyNotification', [MemberOnlyNotificationController::class, 'index'])->name('mailIndex');
-        Route::get('/MemberOnlyNotification/sendMail', [MemberOnlyNotificationController::class, 'sendMail'])->name('sendMail');
+        Route::post('/MemberOnlyNotification/sendMail', [MemberOnlyNotificationController::class, 'sendMail'])->name('sendMail');
     });
 });
 

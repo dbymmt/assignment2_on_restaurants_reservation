@@ -13,10 +13,12 @@ class MemberOnlyNotification extends Notification
     use Queueable;
 
     private $user;
+    private $mailTemplate;
 
-    public function __construct($user)
+    public function __construct($user, $mailTemplate)
     {
         $this->user = $user;
+        $this->mailTemplate = $mailTemplate;
     }
 
     public function via($notifiable)
@@ -27,10 +29,10 @@ class MemberOnlyNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->view('owner.notification', ['user' => $this->user])
-                    ->subject('メールのタイトル')
-                    ->line('メールの本文')
-                    ->action('解約はこちら', url("/user/mail/exit?user_mail={$this->user->email}"));
+            ->view('owner.notification', ['user' => $this->user, 'mailTemplate' => $this->mailTemplate])
+            ->subject('メールのタイトル')
+            ->line('メールの本文')
+            ->action('解約はこちら', url("/user/mail/exit?user_mail={$this->user->email}"));
     }
 
     /**

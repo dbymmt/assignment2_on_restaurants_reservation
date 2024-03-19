@@ -14,7 +14,7 @@ class NotificationExitController extends Controller
         $user = User::where('email', $request->user_mail)->first();
 
         if ($user) {
-            $user->email_accepted = false;
+            $user->mail_accepting = 0;
             $user->save();
         }
 
