@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use App\Notifications\MemberOnlyNotification;
 use Illuminate\Http\Request;
+use App\Http\Requests\NotificationRequest;
 use App\Models\User;
 
 class MemberOnlyNotificationController extends Controller
@@ -15,7 +16,8 @@ class MemberOnlyNotificationController extends Controller
         return view('owner.template');
     }
 
-    public function sendMail(Request $request)
+    // public function sendMail(Request $request)
+    public function sendMail(NotificationRequest $request)
     {
         $mailTemplate = $request->input('mail_template');
         $users = User::where('mail_accepting', 1)->get();
