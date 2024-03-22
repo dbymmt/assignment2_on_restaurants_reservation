@@ -1,0 +1,7 @@
+.template-message-body__error{
+    color: rgb(255,0,0);
+}
+
+.template-message-body__message{
+    color: rgb(0,255,0);
+}
