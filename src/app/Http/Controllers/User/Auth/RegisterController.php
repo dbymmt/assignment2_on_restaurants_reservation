@@ -51,6 +51,14 @@ class RegisterController extends Controller
         ]);
     }
 
+    // メール送信
+    protected function registered(Request $request, $user)
+    {
+        $user->sendEmailVerificationNotification();
+
+        return view('user.auth.temporary_register');
+    }
+
     // 登録処理
     protected function create(array $data)
     {

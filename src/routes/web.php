@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\Owner\MemberOnlyNotificationController;
 use App\Http\Controllers\User\NotificationExitController;
+use App\Http\Controllers\User\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,14 +29,22 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     Auth::routes([
         'register' => true,
         'reset'    => false,
-        'verify'   => false
+        'verify'   => true,
     ]);
 
     // ログアウト
     Route::post('/logout', [MypageController::class, 'logout'])->name('logout');
 
+    // Route::get('email/verify', 'User\Auth\VerificationController@show')->name('verification.notice');
+    // Route::get('email/verify/{id}/{hash}', 'User\Auth\VerificationController@verify')->name('verification.verify');
+    // Route::post('email/resend', 'User\Auth\VerificationController@resend')->name('verification.resend');
+
+    // Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+    // Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+    // Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
     // ログイン認証後
-    Route::middleware('auth:user')->group(function () {
+    Route::middleware(['auth:user', 'verified'])->group(function () {
 
         // Route::resource('home', 'HomeController', ['only' => 'index']);
 
@@ -106,6 +115,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 // ユーザー登録、ログイン
 Route::get('/login', [App\Http\Controllers\User\Auth\LoginController::class, 'showLoginForm']);
 Route::get('/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegistrationForm']);
+
+// メール認証関連
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 // 検索部
 Route::get('/', [IndexController::class, 'index']);
