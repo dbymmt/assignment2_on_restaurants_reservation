@@ -14,7 +14,6 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    // 状況次第でこの宣言があるとエラーになる
     use RegistersUsers;
 
     protected $redirectTo = RouteServiceProvider::HOME;
@@ -52,17 +51,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    // 仮登録処理
-    protected function temporaryRegister(){
-        // ここに仮登録機能を実装
-
-        // 仮登録したユーザに本登録メールを送信
-        //      そのメール内に本登録用リンク(?email="登録したユーザのメールアドレスを記載しておく"
-        // usersテーブルに仮登録ユーザを登録(temporary_registeredカラム = "1")
-        // 仮登録完了ページを表示(resources/views/temporary_registered.blade.php)
-
-    }
-
     // 登録処理
     protected function create(array $data)
     {
@@ -72,14 +60,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        // 現在時間 $today=Carbon::now();
-        // 有効期限(秒) $valid_limit = 300;
-        // 1) 現在時間 - 仮登録時時間 < 有効期限(秒)なら
-        //      temporary_registeredカラム = "0"とする
-        //      本登録完了ページを表示(resources/views/thanks.blade.php)
-        // 2) 現在時間 - 仮登録時時間 > 有効期限(秒)なら
-        //      再登録要請ページを表示(resources/views/retry_register.blade.php)
-        //      仮登録したユーザをusersテーブルから削除
     }
 
     // リダイレクト
