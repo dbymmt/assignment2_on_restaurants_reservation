@@ -56,6 +56,8 @@ class RegisterController extends Controller
     {
         $user->sendEmailVerificationNotification();
 
+        Auth::guard('user')->logout(); // ユーザーをログアウト
+
         return view('user.auth.temporary_register');
     }
 

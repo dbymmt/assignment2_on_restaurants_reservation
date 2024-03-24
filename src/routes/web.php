@@ -35,18 +35,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     // ログアウト
     Route::post('/logout', [MypageController::class, 'logout'])->name('logout');
 
-    // Route::get('email/verify', 'User\Auth\VerificationController@show')->name('verification.notice');
-    // Route::get('email/verify/{id}/{hash}', 'User\Auth\VerificationController@verify')->name('verification.verify');
-    // Route::post('email/resend', 'User\Auth\VerificationController@resend')->name('verification.resend');
-
-    // Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
-    // Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
-    // Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
-
     // ログイン認証後
     Route::middleware(['auth:user', 'verified'])->group(function () {
-
-        // Route::resource('home', 'HomeController', ['only' => 'index']);
 
         // TOPページ
         Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
@@ -136,6 +126,19 @@ Route::get('/thanks', [MypageController::class, 'thanks']);
 // マイページ用
 Route::get('/mypage', [MypageController::class, 'index']);
 
+
+
+
+
+
+    // User内から退避
+    // Route::get('email/verify', 'User\Auth\VerificationController@show')->name('verification.notice');
+    // Route::get('email/verify/{id}/{hash}', 'User\Auth\VerificationController@verify')->name('verification.verify');
+    // Route::post('email/resend', 'User\Auth\VerificationController@resend')->name('verification.resend');
+
+    // Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+    // Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+    // Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 // Route::get('/', function () {
 //     return view('welcome');
