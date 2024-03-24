@@ -40,6 +40,7 @@ class VerificationController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    // protected $redirectTo = '/thanks';
 
     /**
      * Show the email verification notice.
@@ -50,7 +51,28 @@ class VerificationController extends Controller
     public function show(Request $request)
     {
         return $request->user()->hasVerifiedEmail()
-                        ? redirect($this->redirectPath())
-                        : view('auth.verify');
+            ? redirect($this->redirectPath())
+            : view('auth.verify');
+    }
+
+    public function verify(Request $request)
+    {
+        if (
+            $request->route('id') == $request->user()->getKey() &&
+            !$request->user()->hasVerifiedEmail()
+        ) {
+            if ($request->user()->markEmailAsVerified()) {
+                event(new Verified($request->user()));
+            }
+
+            return redirect($this->redirectPath())->with('verified', true);
+        }
+
+        return redirect($this->redirectPath());
+    }
+
+    protected function redirectTo()
+    {
+        return '/thanks';
     }
 }
