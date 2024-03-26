@@ -12,16 +12,18 @@ class ReminderNotification extends Notification
     use Queueable;
 
     private $user;
+    private $reservation;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $reservation)
     {
         //
         $this->user = $user;
+        $this->reservation = $reservation;
     }
 
     /**
@@ -44,8 +46,8 @@ class ReminderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->view('owner.notification_reservation', ['user' => $this->user])
-            ->subject('Reminder for your reservation!!');
+            ->view('owner.notification_reservation', ['user' => $this->user, 'reservation' => $this->reservation,])
+            ->subject('Reminder for your reservation!!(' . $this->reservation->scheduled_date . ')');
     }
 
     /**

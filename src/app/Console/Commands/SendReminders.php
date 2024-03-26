@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
-use App\Models\Reservations;
+use App\Models\Reservation;
 use Carbon\Carbon;
 use App\Notifications\ReminderNotification;
 
@@ -43,12 +43,10 @@ class SendReminders extends Command
     public function handle()
     {
         $today = Carbon::today();
-        $users = User::whereHas('reservations', function ($query) use ($today) {
-            $query->whereDate('scheduled_date', $today);
-        })->get();
+        $today_reservations = Reservation::where('scheduled_date', $today)->get();
 
-        foreach ($users as $user) {
-            $user->notify(new ReminderNotification($user));
+        foreach ($today_reservations as $today_reservation) {
+            $today_reservation->user->notify(new ReminderNotification($today_reservation->user, $today_reservation));
         }
 
         Log::info('test_from_scheduled_Commands');
