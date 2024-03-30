@@ -1,0 +1,4 @@
+.index-restaurants-body__lists {
+    display: flex;
+    flex-wrap: wrap;
+}
