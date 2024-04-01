@@ -1,0 +1,36 @@
+.owner-index-restaurants {
+    display:flex;
+}
+
+.owner-index-restaurants-body {
+    width: 65%;
+}
+
+.owner-index-restaurants__add{
+    width: 35%;
+}
+
+.owner-index-restaurants__add-body {
+    background-color: #305DFF;
+    color: #fff;
+    padding: 30px 15px;
+    border-radius: 10px;
+}
+
+.owner-index-restaurants-add__error {
+    color:red;
+    font-weight: 700;
+}
+
+.owner-index-mail {
+    background-color: #305DFF;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 0px;
+    color:#fff;
+}
+
+.owner-index-mail > a{
+    color: #fff;
+    text-decoration: none;
+}

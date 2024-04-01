@@ -1,10 +1,10 @@
 @extends('layouts.auth-template')
 
-@section('title', 'Login')
+@section('title', 'User-Login')
 
 @section('auth-content')
 <section class="register_login__body">
-    <form action="/login" method="post">
+    <form action="{{ route('user.login') }}" method="post">
         @csrf
         <ul class="register_login__errors-email">
         {{-- @if($errors->has('email'))

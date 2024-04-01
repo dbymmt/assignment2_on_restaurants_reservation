@@ -15,7 +15,8 @@ article.detail-main {
     display: flex;
     align-items: center;
 }
-.detail-body__title > i {
+
+.detail-body__title>i {
     font-size: 0.5em;
     background-color: #fff;
     border: 1px solid #fff;
@@ -30,7 +31,7 @@ article.detail-main {
     height: 65%;
 }
 
-.detail-body__img > img {
+.detail-body__img>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -68,18 +69,19 @@ article.detail-main {
     align-items: center;
 }
 
-.detail-reservation__form-body > dt{
+.detail-reservation__form-body>dt {
     width: 25%;
     font-size: 0.8em;
     color: #fff;
 }
 
-.detail-reservation__form-body > dd{
+.detail-reservation__form-body>dd {
     width: 55%;
-    margin-left:0;
+    margin-left: 0;
 }
 
-.detail-reservation__form-body > input, .detail-reservation__form-body > select{
+.detail-reservation__form-body>input,
+.detail-reservation__form-body>select {
     display: block;
 }
 
@@ -95,17 +97,17 @@ article.detail-main {
     font-size: 0.8em;
 }
 
-.detail-reservation__confirm > dt {
+.detail-reservation__confirm>dt {
     width: 35%;
 }
 
-.detail-reservation__confirm > dd {
+.detail-reservation__confirm>dd {
     width: 55%;
     margin-left: 0;
     margin-right: 0;
 }
 
-.detail-reservation > form > input {
+.detail-reservation>form>input {
     display: block;
     position: absolute;
     bottom: 0%;

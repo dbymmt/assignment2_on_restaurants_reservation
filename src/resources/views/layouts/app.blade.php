@@ -56,12 +56,13 @@
                 <li class="header__list"><a href="/">Home</a></li>
                 @if(Auth::check())
                     <li class="header__list">
-                        <form action="/logout" name="logout" method="POST">
+                        <form action="{{route('user.logout')}}" name="logout" method="POST">
                             @csrf
                             {{-- <input type="submit" value="logout"> --}}
                             <a href="javascript:logout.submit()">logout</a>
                         </form>
                     </li>
+                    {{-- <li class="header__list"><a href="/user/mypage">Mypage</a></li> --}}
                     <li class="header__list"><a href="/mypage">Mypage</a></li>
                 @else
                     <li class="header__list"><a href="/register">Registration</a></li>

@@ -9,10 +9,13 @@
 @endsection
 
 @section('content')
-
-<article class="index-restaurants" id="index">
-    @foreach($restaurants as $restaurant)
-        @include('part_summary',['restaurant' => $restaurant])
-    @endforeach
+<article class="user-index-restaurants">
+    <section class="index-restaurants-body">
+        <div class="index-restaurants-body__lists" id="index">
+            @foreach($restaurants as $restaurant)
+                @include('part_summary',['restaurant' => $restaurant])
+            @endforeach
+        </div>
+    </section>
 </article>
 @endsection

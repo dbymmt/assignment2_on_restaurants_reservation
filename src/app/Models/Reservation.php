@@ -17,15 +17,17 @@ class Reservation extends Model
         'visitors',
         'scheduled_date',
         'scheduled_time',
-        'contact',
+        // 'contact',
     ];
 
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function restaurant(){
+    public function restaurant()
+    {
         return $this->belongsTo('App\Models\Restaurant');
     }
 }

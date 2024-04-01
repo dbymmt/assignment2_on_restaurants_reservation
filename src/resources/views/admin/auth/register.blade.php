@@ -1,10 +1,10 @@
-@extends('layouts.auth-template')
+@extends('layouts.auth-template-staff')
 
-@section('title', 'Registration')
+@section('title', 'Admin-Registration')
 
 @section('auth-content')
 <section class="register_login__body">
-    <form action="/register" method="post">
+    <form action="{{ route('admin.register') }}" method="post">
         @csrf
         @include('auth.errors', ['input' => 'name'])
         <p class="register_login__body-input"><i class="fa-solid fa-user"></i><input type="text" name="name" placeholder="Username"></p>

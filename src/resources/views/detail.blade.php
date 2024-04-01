@@ -12,18 +12,31 @@
 
 <article class="detail-main" id="detail">
     <section class="detail-body">
-        <h3 class="detail-body__title"><i class="fa-solid fa-less-than" id="detail-body__title-back"></i>{{ $restaurant->name }}</h3>
-        <div class="detail-body__img">
-            <img src="{{$restaurant->image_url}}" alt="{{$restaurant->name}}">
+        <div class="detail-body-main">
+            <h3 class="detail-body__title"><i class="fa-solid fa-less-than" id="detail-body__title-back"></i>{{ $restaurant->name }}</h3>
+            <div class="detail-body__img">
+                <img src="{{asset($restaurant->image_url)}}" alt="{{$restaurant->name}}">
+            </div>
+            <div class="detail-body__information">
+                <div class="detail-body__tags">
+                    <span class="detail-body__tag">#{{ $restaurant->area->name }}</span>
+                    <span class="detail-body__tag">#{{ $restaurant->genre->name }}</span>
+                </div>
+                <div class="detail-body__detail-phrase">
+                    {{$restaurant->detail}}
+                </div>
+            </div>
         </div>
-        <div class="detail-body__information">
-            <div class="detail-body__tags">
-                <span class="detail-body__tag">#{{ $restaurant->area->name }}</span>
-                <span class="detail-body__tag">#{{ $restaurant->genre->name }}</span>
+        <div class="detail-body-reviews">
+            <h3 class="detail-body-reviews__title">レビュー概要</h3>
+            <div class="detail-body-reviews__summary">
+                <span class="detail-body-reviews__score">評価平均：{{ $score_avg }}</span>
+                <span class="detail-body-reviews__count">評価数：{{ $count }}件</span>
             </div>
-            <div class="detail-body__detail-phrase">
-                {{$restaurant->detail}}
+            <div class="detail-body-reviews__link">
+                <a href="{{route('review', ['id' => $restaurant->id])}}">詳細はこちら</a>
             </div>
+
         </div>
     </section>
 
@@ -31,7 +44,7 @@
     @if(Auth::check())
     <section class="detail-reservation">
         <h3 class="detail-reservation__title">予約</h3>
-        <form action="/detail/reservationAdd" method="post">
+        <form action="/user/mypage/reservationAdd" method="post">
             @csrf
             <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
             <dl class="detail-reservation__form-body">
@@ -69,6 +82,7 @@
             </dl>
             <input type="submit" name="submitBtn" value="予約する">
         </form>
+
     </section>
     @endif
 </article>

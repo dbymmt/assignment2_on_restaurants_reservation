@@ -10,7 +10,7 @@ function favoriteIconDelete(callFunc) {
             let restaurantId = icon.closest('[id*="part-summary-restaurant"]').getAttribute('id').replace('part-summary-restaurant', '');
             const confirmDel = confirm('削除しますか');
             if(confirmDel === true){
-                axios.delete(`/mypage/favoriteDelete/${favoriteId}`)
+                axios.delete(`/user/mypage/favoriteDelete/${favoriteId}`)
                     .then(response => {
                         if (response.data === true) {
                             callFunc(restaurantId);

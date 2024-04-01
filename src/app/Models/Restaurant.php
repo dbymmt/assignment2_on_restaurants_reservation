@@ -12,28 +12,39 @@ class Restaurant extends Model
     public $fillable = [
         'area_id',
         'genre_id',
+        'owner_id',
         'name',
+        'acceptable_days',
         'detail',
         'image_url',
     ];
 
-    public function reservations(){
+    public function reservations()
+    {
         return $this->hasMany('App\Models\Reservation');
     }
 
-    public function area(){
+    public function area()
+    {
         return $this->belongsTo('App\Models\Area');
     }
 
-    public function genre(){
+    public function genre()
+    {
         return $this->belongsTo('App\Models\Genre');
     }
 
-    public function owner(){
-        return $this->belongsTo('App\Models\User');
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\Owner');
     }
 
-    public function favorites(){
+    public function favorites()
+    {
         return $this->hasMany('App\Models\Favorite');
+    }
+
+    public function reviews(){
+        return $this->hasMany('App\Models\Review');
     }
 }
