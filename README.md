@@ -42,7 +42,7 @@ git clone git@github.com:dbymmt/assignment2_on_restaurants_reservation.git
 ~~~
 cd assignment2_on_restaurants_reservation
 ~~~
-※リネームしている場合はそのリネームしたディレクトリに移動します。
+※リネームしている場合はそのリネームしたディレクトリ名のディレクトリに入ってください。
 <br>
 
 **3.各dockerコンテナ起動**
@@ -52,14 +52,15 @@ cd assignment2_on_restaurants_reservation
 docker-compose up -d --build
 ~~~
 
-```docker ps``` コマンドにて4個のコンテナが起動していれば問題なし。
+```docker ps``` コマンドにて4個のコンテナが起動しているはずなのでそれをチェックする。
+
 - phpmyadmin
 - php
 - nginx
 - mysql
 <br>
 
-**4.環境ファイルの作成、編集**
+**4..envファイルの作成**
 
 
 ~~~
