@@ -1,3 +1,4 @@
+
 # Rese(レストラン予約システム)
 
 > **[本記事の対象となるユーザ]**  
@@ -18,14 +19,18 @@ UBUNTU Linux 22.04.3 LTS
 
 **1.プロジェクトを展開するディレクトリ上でgit clone実施**
 
+
 ~~~
 git clone git@github.com:dbymmt/assignment2_on_restaurants_reservation.git
 ~~~
 
+
 カレントディレクトリに「assignment2_on_restaurants_reservation」が作成され配下に以下が作成される
+
 - docker(ディレクトリ)
 - src(ディレクトリ)
 - docker-compose.yml(ファイル)
+
 
 ※「assignment2_on_restaurants_reservation」という名前について
 必要であれば適宜mvコマンド等で名前を変更してください。
@@ -42,10 +47,13 @@ cd assignment2_on_restaurants_reservation
 
 **3.各dockerコンテナ起動**
 
+
 ~~~
 docker-compose up -d --build
 ~~~
+
 ```docker ps``` コマンドにて4個のコンテナが起動しているはずなのでそれをチェックする。
+
 - phpmyadmin
 - php
 - nginx
@@ -54,9 +62,11 @@ docker-compose up -d --build
 
 **4..envファイルの作成**
 
+
 ~~~
 cp .env.example .env
 ~~~
+
 .envファイルが作成されたことを確認する
 ※手順6.にてこのファイルを変更するので作成されたことは必ず確認してください。
 <br>
@@ -72,6 +82,7 @@ code .
 <br>
 以下項目を以下の通り変更する
 
+
 ~~~
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -80,6 +91,7 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ~~~
+
 
 ※データベース名、ユーザ名、パスワードを任意のものに変更したい場合  
 docker-compose.ymlファイルのmysqlディレクティブにて  
@@ -94,52 +106,64 @@ docker-compose.ymlファイルのmysqlディレクティブにて
 ~~~
 docker-compose exec php bash
 ~~~
+
 そのコンテナに対応するプロンプトに変更される
 <br>
 
 **8.laravelインストール**
 
+
 ~~~
 composer install
 ~~~
+
 インストールが完了することを確認する
 <br>
 
 **9.鍵の作成**
 
+
 ~~~
 php artisan key:generate
 ~~~
+
 成功したことを確認する
 <br>
 
 **10.各テーブル、テストデータ作成**
 
+
 ~~~
 php artisan migrate:fresh --seed
 ~~~
+
 成功したことを確認する
 <br>
 
 **11.storage/app/publicフォルダの使用宣言**
 
+
 ~~~
 php artisan storage:link
 ~~~
+
 publicディレクトリの下に「storage」リンクが作成される
 <br>
 
 **12.画像用ディレクトリ作成**
 
+
 ~~~
 mkdir storage/app/public/images
 ~~~
+
 ディレクトリが作成されたことを確認する
 <br>
 
 **13.必要な画像をダウンロードし「images」ディレクトリに移動**
 
 以下コマンドを逐次実施する
+
 
 ~~~
 curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg && mv sushi.jpg storage/app/public/images
@@ -163,6 +187,7 @@ curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jp
 
 「images」フォルダにsushi.jpg, izakaya.jpg, yakiniku.jpg, italian.jpg, ramen.jpgが作成される
 
+
 <br>
 
 **以上すべての手順で問題がなければ以下リンクで店舗一覧が表示されているはずです**
@@ -172,3 +197,4 @@ http://localhost/
 
 ### <ER図>
 ![alt text](coachtech_grad_restaurant_reservation_add.jpg)
+
