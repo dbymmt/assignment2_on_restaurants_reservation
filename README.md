@@ -1,10 +1,9 @@
 # Rese(レストラン予約システム)
 
-#### <環境構築について>
-
 > **[本記事の対象となるユーザ]**
-windowsの基本的なコマンドが使用できる
+windowsの基本的なコマンドを使用したことがある
 ubuntu linuxの基本的な知識、コマンドが理解できる
+docker(docker-compose)にてコンテナを作成、使用したことがある
 
 > **[実施した環境]**
 Windows10 pro(上のwsl2)  
@@ -13,7 +12,9 @@ UBUNTU Linux 22.04.3 LTS
 テキストエディタ: vscode  
 ※上記以外の環境をご使用の方は各々の環境次第で適宜対応をお願いします
 
-***
+<br><br><hr><br><br>
+
+#### <環境構築>
 
 **1.プロジェクトを展開するディレクトリ上でgit clone実施**
 
@@ -56,6 +57,8 @@ docker-compose up -d --build
 ~~~
 cp .env.example .env
 ~~~
+.envファイルが作成されたことを確認する
+※手順6.にてこのファイルを変更するので作成されたことは必ず確認してください。
 <br>
 
 **5.vscodeの起動**
@@ -66,7 +69,7 @@ code .
 <br>
 
 **6. .envの編集**
-以下項目を以下の通り変更すること
+以下項目を以下の通り変更する
 
 ~~~
 DB_CONNECTION=mysql
@@ -78,7 +81,7 @@ DB_PASSWORD=laravel_pass
 ~~~
 
 ※データベース名、ユーザ名、パスワードを任意のものに変更したい場合
-docker-compose.ymlのmysqlディレクティブにて
+docker-compose.ymlファイルのmysqlディレクティブにて
 　データベース名→MYSQL_DATABASE:
 　ユーザ名→MYSQL_USER:
 　パスワード→MYSQL_PASSWORD:
@@ -159,6 +162,11 @@ curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jp
 
 「images」フォルダにsushi.jpg, izakaya.jpg, yakiniku.jpg, italian.jpg, ramen.jpgが作成される
 
+<br>
+
+**以上すべての手順で問題がなければ以下リンクで店舗一覧が表示されているはずです**
+http://localhost/
+<br>
 
 #### <ER図>
 ![alt text](coachtech_grad_restaurant_reservation_add.jpg)
