@@ -1,16 +1,16 @@
 # Rese(レストラン予約システム)
 
 > **[本記事の対象となるユーザ]**  
-windowsの基本的なコマンドを使用したことがある
-ubuntu linuxの基本的な知識、コマンドが理解できる
-docker(docker-compose)にてコンテナを作成、使用したことがある
+windowsの基本的なコマンドを使用したことがある  
+ubuntu linuxの基本的な知識、コマンドが理解できる  
+docker(docker-compose)にてコンテナを作成、使用したことがある  
 
 > **[実施した環境]**  
 Windows10 pro(上のwsl2)  
 docker v4.28.0  
 UBUNTU Linux 22.04.3 LTS  
 テキストエディタ: vscode  
-※上記以外の環境をご使用の方は各々の環境次第で適宜対応をお願いします
+※上記以外の環境をご使用の方は各々の環境次第で適宜対応をお願いします  
 
 <br><br><hr><br><br>
 
