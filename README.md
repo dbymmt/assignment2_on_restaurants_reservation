@@ -81,12 +81,12 @@ DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ~~~
 
-※データベース名、ユーザ名、パスワードを任意のものに変更したい場合
-docker-compose.ymlファイルのmysqlディレクティブにて
-　データベース名→MYSQL_DATABASE:
-　ユーザ名→MYSQL_USER:
-　パスワード→MYSQL_PASSWORD:
-をそれぞれ編集したうえで.envの該当箇所をその任意のものに変更してください
+※データベース名、ユーザ名、パスワードを任意のものに変更したい場合  
+docker-compose.ymlファイルのmysqlディレクティブにて  
+　データベース名→MYSQL_DATABASE:  
+　ユーザ名→MYSQL_USER:  
+　パスワード→MYSQL_PASSWORD:  
+をそれぞれ編集したうえで.envの該当箇所をその任意のものに変更してください  
 <br>
 
 **7.「php」コンテナに入る**
