@@ -52,7 +52,7 @@ docker-compose up -d --build
 - mysql
 <br>
 
-**4.環境ファイルの作成、編集**
+**4..envファイルの作成**
 
 ~~~
 cp .env.example .env
