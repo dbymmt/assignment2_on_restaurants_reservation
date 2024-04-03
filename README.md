@@ -12,7 +12,7 @@ UBUNTU Linux 22.04.3 LTS
 テキストエディタ: vscode  
 ※上記以外の環境をご使用の方は各々の環境次第で適宜対応をお願いします  
 
-<br><br><hr><br><br>
+<br><br><br><br><hr>
 
 ### <環境構築>
 
@@ -168,7 +168,7 @@ curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jp
 **以上すべての手順で問題がなければ以下リンクで店舗一覧が表示されているはずです**
 <br>
 http://localhost/
-<br>
+<br><hr>
 
 ### <ER図>
 ![alt text](coachtech_grad_restaurant_reservation_add.jpg)
