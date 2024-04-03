@@ -168,7 +168,7 @@ curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jp
 **以上すべての手順で問題がなければ以下リンクで店舗一覧が表示されているはずです**
 <br>
 http://localhost/
-<br><hr>
+<br><br><br><hr>
 
 ### <ER図>
 ![alt text](coachtech_grad_restaurant_reservation_add.jpg)
