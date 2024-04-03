@@ -14,7 +14,7 @@ UBUNTU Linux 22.04.3 LTS
 
 <br><br><hr><br><br>
 
-#### <環境構築>
+### <環境構築>
 
 **1.プロジェクトを展開するディレクトリ上でgit clone実施**
 
@@ -170,5 +170,5 @@ curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jp
 http://localhost/
 <br>
 
-#### <ER図>
+### <ER図>
 ![alt text](coachtech_grad_restaurant_reservation_add.jpg)
