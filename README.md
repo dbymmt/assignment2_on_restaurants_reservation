@@ -69,6 +69,7 @@ code .
 <br>
 
 **6. .envの編集**
+<br>
 以下項目を以下の通り変更する
 
 ~~~
@@ -165,6 +166,7 @@ curl -OL https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jp
 <br>
 
 **以上すべての手順で問題がなければ以下リンクで店舗一覧が表示されているはずです**
+<br>
 http://localhost/
 <br>
 
