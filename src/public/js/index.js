@@ -1,7 +1,7 @@
 
-document.addEventListener('DOMContentLoaded', function () { 
+document.addEventListener('DOMContentLoaded', function () {
     // indexページ //
-    if(document.querySelector('[id="index"]') != null){
+    if (document.querySelector('[id="index"]') != null) {
 
         ////////////////////////
         // 検索メニューによる検索
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // テキスト入力が変更されたときの処理
         keywordInput.addEventListener('keydown', function (event) {
-            if(event.key === 'Enter')search();
+            if (event.key === 'Enter') search();
         });
 
         // 検索を実行する関数
@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
             let keyword = keywordInput.value;
 
             axios.get(`/search?area=${area}&genre=${genre}&keyword=${keyword}`)
-            .then(response => {
-                const restaurants = response.data;
-                let indexRestaurants = document.querySelector('.index-restaurants');
-                indexRestaurants.innerHTML = '';
+                .then(response => {
+                    const restaurants = response.data;
+                    let indexRestaurants = document.querySelector('.index-restaurants-body');
+                    indexRestaurants.innerHTML = '';
 
-                restaurants.forEach(restaurant => {
-                    const partSummary = `
+                    restaurants.forEach(restaurant => {
+                        const partSummary = `
                         <div id="part-summary-restaurant${restaurant.id}">
                             <div class="part-summary__img">
                                 <img src="${restaurant.image_url}" alt="${restaurant.restaurant_name}">
@@ -57,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                         </div>
                     `;
-                    indexRestaurants.insertAdjacentHTML('beforeend', partSummary);
+                        indexRestaurants.insertAdjacentHTML('beforeend', partSummary);
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
                 });
-            })
-            .catch(error => {
-                console.error(error);
-            });
         }
 
         /////////////////
@@ -70,29 +70,29 @@ document.addEventListener('DOMContentLoaded', function () {
         /////////////////
         toFavoriteIcons = document.querySelectorAll('.part-summary__detail-detail-heart .fa-heart');
 
-        toFavoriteIcons.forEach(function (icon) { 
-            icon.addEventListener('click', function (event) { 
+        toFavoriteIcons.forEach(function (icon) {
+            icon.addEventListener('click', function (event) {
                 let restaurantId = icon.dataset.restaurant;
 
                 if (icon.classList.contains('fa-regular')) {
                     const confirmAdd = confirm('追加しますか？');
-                    if (confirmAdd === true) { 
+                    if (confirmAdd === true) {
                         axios.post(`/user/mypage/favoriteAdd/${restaurantId}`)
-                        .then(response => {
-                            if (response.data.result === true) {
-                                icon.classList.remove('fa-regular');
-                                icon.classList.add('fa-solid');
-                                icon.id = `favorite_${response.data.favorite_id}`;
-                            }
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
+                            .then(response => {
+                                if (response.data.result === true) {
+                                    icon.classList.remove('fa-regular');
+                                    icon.classList.add('fa-solid');
+                                    icon.id = `favorite_${response.data.favorite_id}`;
+                                }
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
                     }
                 } else if (icon.classList.contains('fa-solid')) {
                     let favoriteId = icon.getAttribute('id').replace('favorite_', '');
                     const confirmDel = confirm('削除しますか');
-                    if(confirmDel === true){
+                    if (confirmDel === true) {
                         axios.delete(`/user/mypage/favoriteDelete/${favoriteId}`)
                             .then(response => {
                                 if (response.data === true) {
